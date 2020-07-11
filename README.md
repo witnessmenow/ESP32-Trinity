@@ -23,3 +23,11 @@ This board is designed to use the default pins of the [ESP32-RGB64x32MatrixPanel
 If you are using a 64x64 display you will need to edit the [ESP32-RGB64x32MatrixPanel-I2S-DMA.h file](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/ESP32-RGB64x32MatrixPanel-I2S-DMA.h) that comes with the library. There are two changes required:
 - Change `#define MATRIX_HEIGHT               32` to be **64**. It should be possible to do this from the Arduino sketch by defining it before you import the library, but I have not found this reliable at all.
 - Change `#define E_PIN_DEFAULT   -1` to be **18**.
+
+### Examples
+
+[ESP32-RGB64x32MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) comes with a few examples that should help get you started.
+
+- [Test Shapes](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/examples/testshapes_32x64/testshapes_32x64.ino) - This is a fairly basic example that will draw some shapes onto the dsiplay then show some text. This is a good example of seeing how to do basics with the display.
+- [Pattern Plasma](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/tree/master/examples/PatternPlasma) - This is a really nice looking pattern that really shows off what the display can do
+- [Aurora Demo](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/examples/AuroraDemo/AuroraDemo.ino) - A range of different patterns displayed on screen. Some of them are really cool. The example needs to slightly modified to work as by deafult it uses custom pins. Use `dma_display.begin();` and it should work

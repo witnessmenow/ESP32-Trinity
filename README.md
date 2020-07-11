@@ -10,9 +10,9 @@ Info, instructions and examples for the ESP32 i2s Matrix Shield available on Tin
 You will need to have the ESP32 setup for your Arduino IDE, [instructions can be found here](https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md).
 
 ### Library dependancies
-- This shield is designed to be used with the [ESP32-RGB64x32MatrixPanel-I2S-DMA library](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA), you can install this from the Arduino Library manager by searching for "ESP32 64x32 LED MATRIX"
-- The above library has a dependancy on the [Adafruit GFX library](https://github.com/adafruit/Adafruit-GFX-Library), this can also be installed from the library manager by searching for "Adafruit GFX"
-- It is not a dependancy of the library, but some of the cooler examples of the library are built using the FastLED library, so it is worth installing that too. Again you can use the library manager and search for "FastLED".
+- [ESP32-RGB64x32MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) - the library this shield is designed to be used with. This is what interacts with the matrix panel. You can install this from the Arduino Library manager by searching for "ESP32 64x32 LED MATRIX"
+- [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library) - is a dependacy of the matrix library. This can also be installed from the library manager by searching for "Adafruit GFX"
+- [FastLED](https://github.com/FastLED/FastLED) - It is not a dependancy of the matrix library, but some of the cooler examples are built using the FastLED library, so it is worth installing that too. Again you can use the library manager and search for "FastLED".
 
 ### Basic Usage
 

@@ -1,7 +1,16 @@
 # ESP32-i2s-Matrix-Shield
-Info, instructions and examples for the ESP32 i2s Matrix Shield available on Tindie
+Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Tindie](https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
 
+## Aditional Hardware Required
 
+To use this shield you will need the following additional things
+
+- [ESP32 Mini32 Development board (ESP32 D1 Mini)\*]( https://s.click.aliexpress.com/e/_dSi824B)
+- RGB LED Matrix. Please note that I can not gaurantee the following displays will defintly work with the library/board, They are ones I have bought in the past and work, but sellers have changed stock before.
+    - 64x32 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_dYz5DLt)
+- [5V 8A laptop style power supply\*]( https://s.click.aliexpress.com/e/_d7uVLXt) - How much power the display uses varies based on how many LEDs are on, but this should cover you for anything you want to draw.
+
+* = affiliate link
 
 ## Software Setup
 

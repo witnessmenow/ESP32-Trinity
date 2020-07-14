@@ -1,6 +1,8 @@
 # ESP32-i2s-Matrix-Shield
 Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Tindie](https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
 
+![img](https://cdn.tindiemedia.com/images/resize/0KEMu_q8ZZl2meIWinbTlUCxH8M=/p/fit-in/1370x912/filters:fill(fff)/i/528221/products/2020-07-11T16%3A30%3A52.947Z-IMG_20200711_151941.jpg)
+
 ## Aditional Hardware Required
 
 To use this shield you will need the following additional things
@@ -70,5 +72,14 @@ If you are using a 64x64 display you will need to edit the [ESP32-RGB64x32Matrix
 [ESP32-RGB64x32MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) comes with a few examples that should help get you started.
 
 - [Test Shapes](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/examples/testshapes_32x64/testshapes_32x64.ino) - This is a fairly basic example that will draw some shapes onto the dsiplay then show some text. This is a good example of seeing how to do basics with the display.
-- [Pattern Plasma](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/tree/master/examples/PatternPlasma) - This is a really nice looking pattern that really shows off what the display can do
-- [Aurora Demo](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/examples/AuroraDemo/AuroraDemo.ino) - A range of different patterns displayed on screen. Some of them are really cool. The example needs to slightly modified to work as by deafult it uses custom pins. Use `dma_display.begin();` and it should work
+- Pattern Plasma - [Code](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/tree/master/examples/PatternPlasma) - This is a really nice looking pattern that really shows off what the display can do
+
+[Click here for larger](https://gfycat.com/nearajarermine-electronics-arduino-esp32)
+
+![Pattern Plasma](https://thumbs.gfycat.com/NearAjarErmine-small.gif "Pattern Plasma")
+
+- Aurora Demo - [Code](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA/blob/master/examples/AuroraDemo/AuroraDemo.ino) - A range of different patterns displayed on screen. Some of them are really cool. The example needs to slightly modified to work as by deafult it uses custom pins. Use `dma_display.begin();` and it should work
+
+[Click here for larger](https://gfycat.com/blankfancyballoonfish)
+
+![Aurora](https://thumbs.gfycat.com/BlankFancyBalloonfish-small.gif "Aurora")

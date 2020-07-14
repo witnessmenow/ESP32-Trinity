@@ -23,20 +23,20 @@ I created a video of me soldering up a board to use as instructions - [Link](htt
 
 ## Setup and Configuration options
 
-### Setup
+#### Setup
 
 - On most displays, there are two connectors. There are arrows on the PCB of the display, the connector that the arrows are moving away from is the input. Insert the shield into this connector (there are arrows on the shield that should match the direction of the arrows on the display's PCB)
 - When inserting into this connector, make sure that it is inserted into the center of the connector as it is possible to insert it offset to one side.
 - Most display's come with a power cable, connect that to the display and also to the green screw terminals of the shield. (Red = 5V, black = GND)
 
-### Powering the board
+#### Powering the board
 
 - **The board and display take only 5V!**. 
 - The recomended way of powering the board is either using the 2.1mm barel jack or using the add-on screw terminals. 
 - The amount of amps needed depends on how many LEDs your project uses, but I recomend roughly 4A for a 64x32 display to cover all scenarios. Double it for a 64x64.
 - It is possible to power the display through the micro-usb of the ESP32, but I would be very catious about doing this, as it is probably not designed to hangdle high amounts of current.
 
-### Power Configuration
+#### Power Configuration
 
 There is a 3pin connector with a jumper pin on the shield, this is for configuring the power setup:
 
@@ -46,16 +46,16 @@ There is a 3pin connector with a jumper pin on the shield, this is for configuri
 
 ## Software Setup
 
-### Board definition
+#### Board definition
 
 You will need to have the ESP32 setup for your Arduino IDE, [instructions can be found here](https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md).
 
-### Library dependancies
+#### Library dependancies
 - [ESP32-RGB64x32MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) - the library this shield is designed to be used with. This is what interacts with the matrix panel. You can install this from the Arduino Library manager by searching for "ESP32 64x32 LED MATRIX"
 - [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library) - is a dependacy of the matrix library. This can also be installed from the library manager by searching for "Adafruit GFX"
 - [FastLED](https://github.com/FastLED/FastLED) - It is not a dependancy of the matrix library, but some of the cooler examples are built using the FastLED library, so it is worth installing that too. Again you can use the library manager and search for "FastLED".
 
-### Basic Usage
+#### Basic Usage
 
 This board is designed to use the default pins of the [ESP32-RGB64x32MatrixPanel-I2S-DMA library](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) where possible, so you can use `dma_display.begin();` instead of passing in the custom pins.
 
@@ -65,7 +65,7 @@ If you are using a 64x64 display you will need to edit the [ESP32-RGB64x32Matrix
 - Change `#define MATRIX_HEIGHT               32` to be **64**. It should be possible to do this from the Arduino sketch by defining it before you import the library, but I have not found this reliable at all.
 - Change `#define E_PIN_DEFAULT   -1` to be **18**.
 
-### Examples
+#### Examples
 
 [ESP32-RGB64x32MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA) comes with a few examples that should help get you started.
 

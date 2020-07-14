@@ -12,6 +12,38 @@ To use this shield you will need the following additional things
 
 * = affiliate link
 
+## Assembly Instructions
+
+I created a video of me soldering up a board to use as instructions - [Link](https://www.youtube.com/watch?v=ZiR93TmSyE0&feature=youtu.be)
+
+**TL;DW (aka steps for Bitluni)**
+- All components sit on the top of the board other than the P-in connector and 3no. 1K resistors for C,D and E connections.
+- **NOTE:** As the P-in connector and 1k resistors are underneath the ESP32 board, make sure that you solder them before blocking those pads. This is essential if you choose to solder the ESP32 directly to the board, but makes it easier even if you choose to use the header stand-offs
+- Ground is a plane across the whole board, so you may need to increase the heat of your iron to solder Ground pads.
+
+## Setup and Configuration options
+
+### Setup
+
+- On most displays, there are two connectors. There are arrows on the PCB of the display, the connector that the arrows are moving away from is the input. Insert the shield into this connector (there are arrows on the shield that should match the direction of the arrows on the display's PCB)
+- When inserting into this connector, make sure that it is inserted into the center of the connector as it is possible to insert it offset to one side.
+- Most display's come with a power cable, connect that to the display and also to the green screw terminals of the shield. (Red = 5V, black = GND)
+
+### Powering the board
+
+- **The board and display take only 5V!**. 
+- The recomended way of powering the board is either using the 2.1mm barel jack or using the add-on screw terminals. 
+- The amount of amps needed depends on how many LEDs your project uses, but I recomend roughly 4A for a 64x32 display to cover all scenarios. Double it for a 64x64.
+- It is possible to power the display through the micro-usb of the ESP32, but I would be very catious about doing this, as it is probably not designed to hangdle high amounts of current.
+
+### Power Configuration
+
+There is a 3pin connector with a jumper pin on the shield, this is for configuring the power setup:
+
+- **Jumper on the bottom two pins** - This should be the position you use unless you want to do something else specific. This mode allows power from your barel jack/screw terminals to power your ESP32, but will block the ESP32 from powering the display if you only have USB connected.
+- **Jumper on the top two pins "diode bypass"** - This allows you to power the display using the USB power of the ESP32. I would be very catious about doing this, as it is probably not designed to hangdle high amounts of current.
+- **Removing Jumper** - If you want to power the ESP32 and the display seperately you can, removing the jumpers disconnects the 5V from the shield from the ESP32 5V pin. GND remains connected.
+
 ## Software Setup
 
 ### Board definition

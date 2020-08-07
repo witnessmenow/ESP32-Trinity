@@ -7,7 +7,10 @@ Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Ti
 
 To use this shield you will need the following additional things
 
-- [ESP32 Mini32 Development board (ESP32 D1 Mini)\*]( https://s.click.aliexpress.com/e/_dSi824B)
+- ESP32 Mini32 Development board (ESP32 D1 Mini)
+    - [Aliexpress\*]( https://s.click.aliexpress.com/e/_dSi824B)
+    - [Amazon.com\*](https://amzn.to/3gArkAY)
+    - Also available as an add-on on the Tindie listing
 - RGB LED Matrix. Please note that I can not gaurantee the following displays will defintly work with the library/board, They are ones I have bought in the past and work, but sellers have changed stock before.
     - 64x32 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_dYz5DLt)
     - 64x64 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_BfjY0wfp)

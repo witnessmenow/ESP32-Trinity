@@ -7,7 +7,10 @@ Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Ti
 
 To use this shield you will need the following additional things
 
-- [ESP32 Mini32 Development board (ESP32 D1 Mini)\*]( https://s.click.aliexpress.com/e/_dSi824B)
+- ESP32 Mini32 Development board (ESP32 D1 Mini)
+    - [Aliexpress\*]( https://s.click.aliexpress.com/e/_dSi824B)
+    - [Amazon.com\*](https://amzn.to/3gArkAY)
+    - Also available as an add-on on the Tindie listing
 - RGB LED Matrix. Please note that I can not gaurantee the following displays will defintly work with the library/board, They are ones I have bought in the past and work, but sellers have changed stock before.
     - 64x32 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_dYz5DLt)
     - 64x64 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_BfjY0wfp)
@@ -36,15 +39,15 @@ I created a video of me soldering up a board to use as instructions - [Link](htt
 
 - **The board and display take only 5V!**. 
 - The recomended way of powering the board is either using the 2.1mm barel jack or using the add-on screw terminals. 
-- The amount of amps needed depends on how many LEDs your project uses, but I recomend roughly 4A for a 64x32 display to cover all scenarios. Double it for a 64x64.
-- It is possible to power the display through the micro-usb of the ESP32, but I would be very cautious about doing this, as it is probably not designed to hangdle high amounts of current.
+- The amount of amps needed depends on how many LEDs your project uses, but I recomend roughly 3A for a 64x32 display to cover all scenarios. Double it for a 64x64. I would also recomend allowing some head room, expecially if you are getting a cheaper supply.
+- It is possible to power the display through the micro-usb of the ESP32, but I would be very cautious about doing this, as it is probably not designed to handle high amounts of current.
 
 #### Power Configuration
 
 There is a 3pin connector with a jumper pin on the shield, this is for configuring the power setup:
 
 - **Jumper on the bottom two pins** - This should be the position you use unless you want to do something else specific. This mode allows power from your barel jack/screw terminals to power your ESP32, but will block the ESP32 from powering the display if you only have USB connected.
-- **Jumper on the top two pins "diode bypass"** - This allows you to power the display using the USB power of the ESP32. I would be very cautious about doing this, as it is probably not designed to hangdle high amounts of current.
+- **Jumper on the top two pins "diode bypass"** - This allows you to power the display using the USB power of the ESP32. I would be very cautious about doing this, as it is probably not designed to handle high amounts of current.
 - **Removing Jumper** - If you want to power the ESP32 and the display seperately you can, removing the jumpers disconnects the 5V from the shield from the ESP32 5V pin. GND remains connected.
 
 ## Software Setup

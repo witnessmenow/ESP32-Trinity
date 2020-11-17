@@ -434,6 +434,8 @@ void restartGame() {
   // Pick New Piece
   getNewPiece();
 
+  nScore = 0;
+
 }
 
 void loop() {

@@ -94,7 +94,7 @@ You will need to use these pins in your SPI.begin command:
 
 `spi->begin(NFC_SCLK, NFC_MISO, NFC_MOSI, NFC_SS);`
 
-[Untested by me] Some libraries for devices do allow you to pass in custom pins, but a lot seem to allow you pass in an SPI interface. Here is an example using an SD card:
+[Untested by me] Some libraries for devices do not allow you to pass in custom pins, but a lot seem to allow you pass in an SPI interface. Here is an example using an SD card:
 
 ```
 SPIClass spi = SPIClass(HSPI);

@@ -2,11 +2,15 @@
 
 This section is a lie because as of the time of writing, nobody has asked any questions. So this section should probably be named PFAQ (Potential Frequently Asked Questions)
 
+## Table of Contents:
+
 - [Should I buy this version or the PxMatrix version](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#should-i-buy-this-version-or-the-pxmatrix-version)
 - [Will it work with my display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#will-it-work-with-my-display)
 - [What pins are used by the display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-used-by-the-display)
 - [What pins are available to use for sensors etc](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
 - [Can I connect a SPI sensor/device to the shield](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#device-to-the-shield)
+
+---
 
 ### Should I buy this version or the PxMatrix version?
 

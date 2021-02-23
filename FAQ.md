@@ -2,6 +2,16 @@
 
 This section is a lie because as of the time of writing, nobody has asked any questions. So this section should probably be named PFAQ (Potential Frequently Asked Questions)
 
+## Table of Contents:
+
+- [Should I buy this version or the PxMatrix version](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#should-i-buy-this-version-or-the-pxmatrix-version)
+- [Will it work with my display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#will-it-work-with-my-display)
+- [What pins are used by the display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-used-by-the-display)
+- [What pins are available to use for sensors etc](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
+- [Can I connect a SPI sensor/device to the shield](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#device-to-the-shield)
+
+---
+
 ### Should I buy this version or the PxMatrix version?
 
 Tough one to get us started! 
@@ -69,5 +79,28 @@ V1.3 added some more pins to the accelerometer pads:
 - 34 (this is an input only pin)
 - 2 (this is shared with the onboard LED of the ESP32 board)
 
+###  Can I connect a SPI sensor/device to the shield?
+
+It is possible to connect SPI devices to V1.3 shields (V1.2 doesn't have enough pins broken out). Some of the default SPI pins are used by the Matrix, but I have succesfully used an SPI device using the following pins:
+
+```
+#define NFC_SCLK 33
+#define NFC_MISO 32
+#define NFC_MOSI 21
+#define NFC_SS 22
+```
+
+You will need to use these pins in your SPI.begin command:
+
+`spi->begin(NFC_SCLK, NFC_MISO, NFC_MOSI, NFC_SS);`
+
+[Untested by me] Some libraries for devices do not allow you to pass in custom pins, but a lot seem to allow you pass in an SPI interface. Here is an example using an SD card:
+
+```
+SPIClass spi = SPIClass(HSPI);
+spi.begin(NFC_SCLK, NFC_MISO, NFC_MOSI, NFC_SS);
+SD.begin(NFC_SS, spi, 80000000);
+```
+[Source of SD card info](https://www.instructables.com/Select-SD-Interface-for-ESP32/) 
 
 

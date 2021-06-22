@@ -8,8 +8,8 @@
 
     SCLK 33
     MISO 32
-    MOSI 21
-    SS 22
+    MOSI 21 //SDA
+    SS 22 // SCL
 
     These pins are all broken out in the add on area
     (beside the large green screw terminal)
@@ -45,8 +45,8 @@
 // and should be what you wire your SD card to
 #define NFC_SCLK 33
 #define NFC_MISO 32
-#define NFC_MOSI 21
-#define NFC_SS 22
+#define NFC_MOSI 21 //SDA
+#define NFC_SS 22 //SCL
 
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels) {
   Serial.printf("Listing directory: %s\n", dirname);

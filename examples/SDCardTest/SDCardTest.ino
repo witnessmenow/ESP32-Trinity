@@ -1,6 +1,8 @@
 /*******************************************************************
     An example of using the matrix shield with an SD card.
 
+    Based on the basic SD_Test example in the ESP32 library.
+
     The deafult SPI pins are being used by the matrix library
     so we need to use custom ones.
 
@@ -11,6 +13,10 @@
 
     These pins are all broken out in the add on area
     (beside the large green screw terminal)
+
+    Some more info of the changes you would need to make
+    to an existing sketch here:
+    https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#can-i-connect-a-spi-sensordevice-to-the-shield
 
     Parts Used:
     ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B

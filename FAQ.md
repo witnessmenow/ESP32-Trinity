@@ -86,8 +86,8 @@ It is possible to connect SPI devices to V1.3 shields (V1.2 doesn't have enough 
 ```
 #define NFC_SCLK 33
 #define NFC_MISO 32
-#define NFC_MOSI 21
-#define NFC_SS 22
+#define NFC_MOSI 21 //SDA
+#define NFC_SS 22 //SCL
 ```
 
 You will need to use these pins in your SPI.begin command:

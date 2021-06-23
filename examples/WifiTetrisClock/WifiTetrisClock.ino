@@ -30,15 +30,11 @@
 // Additional Libraries - each one of these will need to be installed.
 // ----------------------------
 
-#include <ESP32-RGB64x32MatrixPanel-I2S-DMA.h>
+#include <ESP32-HUB75-MatrixPanel-I2S-DMA.h>
 // This is the library for interfacing with the display
 
-// Can be installed from the library manager (Search for "ESP32 64x32 LED MATRIX")
-// https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA
-
-// Adafruit GFX library is a dependancy for the matrix Library
-// Can be installed from the library manager
-// https://github.com/adafruit/Adafruit-GFX-Library
+// Can be installed from the library manager (Search for "ESP32 MATRIX DMA")
+// https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA
 
 #include <TetrisMatrixDraw.h>
 // This library draws out characters using a tetris block
@@ -51,15 +47,38 @@
 // Search for "ezTime" in the Arduino Library manager
 // https://github.com/ropg/ezTime
 
-// ---- Stuff to configure ----
+// ----------------------------
+// Dependancy Libraries - each one of these will need to be installed.
+// ----------------------------
 
-// Initialize Wifi connection to the router
+// Adafruit GFX library is a dependancy for the matrix Library
+// Can be installed from the library manager
+// https://github.com/adafruit/Adafruit-GFX-Library
+
+
+// -------------------------------------
+// ------- Replace the following! ------
+// -------------------------------------
+
+// Wifi network station credentials
 char ssid[] = "SSID";     // your network SSID (name)
 char password[] = "password"; // your network key
 
 // Set a timezone using the following list
 // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 #define MYTIMEZONE "Europe/Dublin"
+
+// -------------------------------------
+// -------   Matrix Config   ------
+// -------------------------------------
+
+#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
+#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
+#define PANEL_CHAIN 1      // Total number of panels chained one to another
+
+// -------------------------------------
+// -------   Clock Config   ------
+// -------------------------------------
 
 // Sets whether the clock should be 12 hour format or not.
 bool twelveHourFormat = true;
@@ -69,7 +88,10 @@ bool twelveHourFormat = true;
 // but the most significant number will only be replaced every 10 minutes.
 // When true, all digits will be replaced every minute.
 bool forceRefresh = true;
+
 // -----------------------------
+
+MatrixPanel_I2S_DMA *dma_display = nullptr;
 
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 hw_timer_t * animationTimer = NULL;
@@ -77,13 +99,11 @@ hw_timer_t * animationTimer = NULL;
 unsigned long animationDue = 0;
 unsigned long animationDelay = 100; // Smaller number == faster
 
-RGB64x32MatrixPanel_I2S_DMA dma_display(true); //true enables the double buffer
+uint16_t myBLACK = dma_display->color565(0, 0, 0);
 
-uint16_t myBLACK = dma_display.color565(0, 0, 0);
-
-TetrisMatrixDraw tetris(dma_display); // Main clock
-TetrisMatrixDraw tetris2(dma_display); // The "M" of AM/PM
-TetrisMatrixDraw tetris3(dma_display); // The "P" or "A" of AM/PM
+TetrisMatrixDraw tetris(*dma_display); // Main clock
+TetrisMatrixDraw tetris2(*dma_display); // The "M" of AM/PM
+TetrisMatrixDraw tetris3(*dma_display); // The "P" or "A" of AM/PM
 
 Timezone myTZ;
 unsigned long oneSecondLoopDue = 0;
@@ -98,12 +118,12 @@ String lastDisplayedAmPm = "";
 
 // This method is for controlling the tetris library draw calls
 void animationHandler()
-{ 
+{
   // Not clearing the display and redrawing it when you
   // dont need to improves how the refresh rate appears
   if (!finishedAnimating) {
-    dma_display.flipDMABuffer();
-    dma_display.fillScreen(myBLACK);
+    dma_display->flipDMABuffer();
+    dma_display->fillScreen(myBLACK);
     if (displayIntro) {
       finishedAnimating = tetris.drawText(1, 21);
     } else {
@@ -128,15 +148,15 @@ void animationHandler()
         finishedAnimating = tetris.drawNumbers(2, 26, showColon);
       }
     }
-    dma_display.showDMABuffer();
+    dma_display->showDMABuffer();
   }
 
 }
 
 void drawIntro(int x = 0, int y = 0)
 {
-  dma_display.flipDMABuffer();
-  dma_display.fillScreen(myBLACK);
+  dma_display->flipDMABuffer();
+  dma_display->fillScreen(myBLACK);
   tetris.drawChar("P", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
   tetris.drawChar("w", x + 11, y, tetris.tetrisYELLOW);
@@ -147,13 +167,13 @@ void drawIntro(int x = 0, int y = 0)
   tetris.drawChar(" ", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("b", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("y", x + 47, y, tetris.tetrisGREEN);
-  dma_display.showDMABuffer();
+  dma_display->showDMABuffer();
 }
 
 void drawConnecting(int x = 0, int y = 0)
 {
-  dma_display.flipDMABuffer();
-  dma_display.fillScreen(myBLACK);
+  dma_display->flipDMABuffer();
+  dma_display->fillScreen(myBLACK);
   tetris.drawChar("C", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
   tetris.drawChar("n", x + 11, y, tetris.tetrisYELLOW);
@@ -164,11 +184,36 @@ void drawConnecting(int x = 0, int y = 0)
   tetris.drawChar("i", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("n", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("g", x + 47, y, tetris.tetrisGREEN);
-  dma_display.showDMABuffer();
+  dma_display->showDMABuffer();
 }
 
 void setup() {
   Serial.begin(115200);
+
+  HUB75_I2S_CFG mxconfig(
+    PANEL_RES_X,   // module width
+    PANEL_RES_Y,   // module height
+    PANEL_CHAIN    // Chain length
+  );
+
+  mxconfig.double_buff = true;
+  mxconfig.gpio.e = 18;
+
+  // May or may not be needed depending on your matrix
+  // Example of what needing it looks like:
+  // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
+  mxconfig.clkphase = false;
+
+  //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+
+  // Display Setup
+  dma_display = new MatrixPanel_I2S_DMA(mxconfig);
+  dma_display->begin();
+  dma_display->fillScreen(myBLACK);
+
+  tetris.display = dma_display; // Main clock
+  tetris2.display = dma_display; // The "M" of AM/PM
+  tetris3.display = dma_display; // The "P" or "A" of AM/PM
 
   // Attempt to connect to Wifi network:
   Serial.print("Connecting Wifi: ");
@@ -188,13 +233,6 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-
-  // Do not set up display before WiFi connection
-  // as it will crash!
-
-  // Intialise display library
-  dma_display.begin();
-  dma_display.fillScreen(myBLACK);
 
   // "connecting"
   drawConnecting(5, 10);
@@ -285,7 +323,7 @@ void handleColonAfterAnimation() {
   // (this could be better!)
   int y = 26 - (TETRIS_Y_DROP_DEFAULT * tetris.scale);
   tetris.drawColon(x, y, colour);
-  dma_display.showDMABuffer();
+  dma_display->showDMABuffer();
 }
 
 
@@ -306,7 +344,7 @@ void loop() {
     oneSecondLoopDue = now + 1000;
   }
   now = millis();
-  if(now > animationDue) {
+  if (now > animationDue) {
     animationHandler();
     animationDue = now + animationDelay;
   }

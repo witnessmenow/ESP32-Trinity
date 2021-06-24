@@ -40,25 +40,32 @@
 // Can be installed from the library manager
 // https://github.com/tockn/MPU6050_tockn
 
-#include <ESP32-RGB64x32MatrixPanel-I2S-DMA.h>
+#include <ESP32-HUB75-MatrixPanel-I2S-DMA.h>
 // This is the library for interfacing with the display
 
-// Can be installed from the library manager (Search for "ESP32 64x32 LED MATRIX")
-// https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA
+// Can be installed from the library manager (Search for "ESP32 MATRIX DMA")
+// https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA
 
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// ----------------------------
+// Dependency Libraries - each one of these will need to be installed.
+// ----------------------------
+
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-//--------------------------------
-//Config Options:
-//--------------------------------
+// -------------------------------------
+// -------   Matrix Config   ------
+// -------------------------------------
 
-// Update these in ESP32-RGB64x32MatrixPanel-I2S-DMA.h
-// Change the E pin to 18 too
-//#define MATRIX_WIDTH 64
-//#define MATRIX_HEIGHT 64
+#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
+#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
+#define PANEL_CHAIN 1      // Total number of panels chained one to another
+
+// -------------------------------------
+// -------   Other Config Config   ------
+// -------------------------------------
 
 #define SHOW_TIME 10
 
@@ -82,7 +89,7 @@ FPS fps;
 MPU6050 mpu6050(Wire);
 int t = 0;
 
-RGB64x32MatrixPanel_I2S_DMA dma_display(true);
+MatrixPanel_I2S_DMA *dma_display = nullptr;
 
 struct pixel {
   float x;
@@ -99,7 +106,7 @@ struct pixel {
 
 
 pixel pixels[PIXEL_COUNT];
-uint16_t screenPixels[MATRIX_WIDTH][MATRIX_HEIGHT];
+uint16_t screenPixels[PANEL_RES_X][PANEL_RES_Y];
 
 
 // Second Core Stuff
@@ -209,7 +216,25 @@ void processSand(void *param) {
 void setup() {
 
   //Serial.begin(115200); // I only enable this for debug
-  dma_display.begin();
+  HUB75_I2S_CFG mxconfig(
+    PANEL_RES_X,   // module width
+    PANEL_RES_Y,   // module height
+    PANEL_CHAIN    // Chain length
+  );
+  
+  mxconfig.double_buff = true;
+  mxconfig.gpio.e = 18;
+
+  // May or may not be needed depending on your matrix
+  // Example of what needing it looks like:
+  // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
+  //mxconfig.clkphase = false;
+
+  //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+
+  // Display Setup
+  dma_display = new MatrixPanel_I2S_DMA(mxconfig);
+  dma_display->begin();
 
 
   for (uint8_t y = 0; y < MATRIX_HEIGHT; y++) {
@@ -275,11 +300,11 @@ void setup() {
   //mpu6050.calcGyroOffsets(true);
 
 
-  dma_display.setPanelBrightness(32);
-  dma_display.fillScreen(0x0);
-  dma_display.setTextColor(0xFFFF);
-  dma_display.setTextSize(1);
-  dma_display.showDMABuffer();
+  dma_display->setPanelBrightness(32);
+  dma_display->fillScreen(0x0);
+  dma_display->setTextColor(0xFFFF);
+  dma_display->setTextSize(1);
+  dma_display->showDMABuffer();
 
   delay(1000);
 
@@ -297,8 +322,8 @@ void loop() {
   uint32_t t;
   while (((t = micros()) - loopPreviousT) < (1000000L / DISPLAY_FPS));
   loopPreviousT = t;
-  dma_display.flipDMABuffer();
-  dma_display.fillScreen(0x0);
+  dma_display->flipDMABuffer();
+  dma_display->fillScreen(0x0);
   //  mpu6050.update();
   //
   //  x = mpu6050.getAccX();
@@ -307,14 +332,14 @@ void loop() {
   //  //updatePixels(x, y);
   //  updatePixels(y, -x);
   for (int p = 0; p < PIXEL_COUNT; p++) {
-    dma_display.drawPixelRGB888(pixels[p].ix, pixels[p].iy, pixels[p].r, pixels[p].g, pixels[p].b);
+    dma_display->drawPixelRGB888(pixels[p].ix, pixels[p].iy, pixels[p].r, pixels[p].g, pixels[p].b);
   }
 
   for (uint8_t z = 6; z < 64; z += 16) {
     for (uint8_t q = 6; q < 64; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
-          dma_display.drawPixelRGB888(x + z, y + q, 0xFF, 0xFF, 0x00);
+          dma_display->drawPixelRGB888(x + z, y + q, 0xFF, 0xFF, 0x00);
         }
       }
     }
@@ -323,8 +348,8 @@ void loop() {
 
 #ifdef SHOW_FPS
   fps.tick();
-  dma_display.setCursor(1, 1);
-  dma_display.print("FPS:");  dma_display.print(fps.getStringFPS());
+  dma_display->setCursor(1, 1);
+  dma_display->print("FPS:");  dma_display->print(fps.getStringFPS());
 #endif
-  dma_display.showDMABuffer();
+  dma_display->showDMABuffer();
 }

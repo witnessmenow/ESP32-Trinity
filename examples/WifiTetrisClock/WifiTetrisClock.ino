@@ -48,7 +48,7 @@
 // https://github.com/ropg/ezTime
 
 // ----------------------------
-// Dependancy Libraries - each one of these will need to be installed.
+// Dependency Libraries - each one of these will need to be installed.
 // ----------------------------
 
 // Adafruit GFX library is a dependancy for the matrix Library
@@ -73,7 +73,7 @@ char password[] = "password"; // your network key
 // -------------------------------------
 
 #define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
+#define PANEL_RES_Y 32     // Number of pixels tall of each INDIVIDUAL panel module.
 #define PANEL_CHAIN 1      // Total number of panels chained one to another
 
 // -------------------------------------
@@ -202,7 +202,7 @@ void setup() {
   // May or may not be needed depending on your matrix
   // Example of what needing it looks like:
   // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
-  mxconfig.clkphase = false;
+  //mxconfig.clkphase = false;
 
   //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
 

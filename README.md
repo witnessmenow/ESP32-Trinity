@@ -7,6 +7,7 @@ Info, instructions and examples for the ESP32 i2s Matrix Shield, a shield for co
 
 - [My Tindie Store - Ships from EU](https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
 - [Eplop (Colin Hickey) - Ships from the UK](https://store.eplop.co.uk/product/esp32-i2s-matrix-shield/)
+- [Colin's eBay Store - Ships from UK, but VAT applied for EU](https://www.ebay.co.uk/itm/174822458332)
 
 ## Aditional Hardware Required
 

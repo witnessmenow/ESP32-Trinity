@@ -7,7 +7,7 @@ Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Ti
 
 To use this shield you will need the following additional things
 
-- ESP32 Mini32 Development board (ESP32 D1 Mini)
+- ESP32 Mini32 Development board (ESP32 D1 Mini) - NOTE: Get the CP2102/CP2104 version, there is a CH9102 version that does not seem to program
     - [Aliexpress\*]( https://s.click.aliexpress.com/e/_dSi824B)
     - [Amazon.com\*](https://amzn.to/3gArkAY)
     - Also available as an add-on on the Tindie listing

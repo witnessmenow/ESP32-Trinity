@@ -1,5 +1,5 @@
 # ESP32-i2s-Matrix-Shield
-Info, instructions and examples for the ESP32 i2s Matrix Shield (https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
+Info, instructions and examples for the ESP32 i2s Matrix Shield
 
 ![img](https://cdn.tindiemedia.com/images/resize/0KEMu_q8ZZl2meIWinbTlUCxH8M=/p/fit-in/1370x912/filters:fill(fff)/i/528221/products/2020-07-11T16%3A30%3A52.947Z-IMG_20200711_151941.jpg)
 

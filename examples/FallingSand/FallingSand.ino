@@ -167,9 +167,9 @@ void processSand(void *param) {
         }
         newX = (float)pixels[p].x + newDx;
         newY = (float)pixels[p].y + newDy;
-        if (newX > 63) newX = 63;
+        if (newX > PANEL_RES_X - 1) newX = PANEL_RES_X - 1;
         if (newX < 0) newX = 0;
-        if (newY > 63) newY = 63;
+        if (newY > PANEL_RES_Y - 1) newY = PANEL_RES_Y - 1;
         if (newY < 0) newY = 0;
         uint8_t x = (uint8_t)newX;
         uint8_t y = (uint8_t)newY;
@@ -228,7 +228,7 @@ void setup() {
   // May or may not be needed depending on your matrix
   // Example of what needing it looks like:
   // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
-  //mxconfig.clkphase = false;
+  mxconfig.clkphase = false;
 
   //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
 
@@ -243,8 +243,8 @@ void setup() {
     }
   }
 
-  for (uint8_t z = 6; z < 64; z += 16) {
-    for (uint8_t q = 6; q < 64; q += 16) {
+  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
+    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           screenPixels[x + z][y + q] = 60000;
@@ -277,8 +277,8 @@ void setup() {
 
 
     pixels[p] = pixel{
-      random(0, 64),
-      random(0, 64),
+      random(0, PANEL_RES_X),
+      random(0, PANEL_RES_Y),
       0,
       0,
       (float)random(90 , 100) / 100,
@@ -335,8 +335,8 @@ void loop() {
     dma_display->drawPixelRGB888(pixels[p].ix, pixels[p].iy, pixels[p].r, pixels[p].g, pixels[p].b);
   }
 
-  for (uint8_t z = 6; z < 64; z += 16) {
-    for (uint8_t q = 6; q < 64; q += 16) {
+  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
+    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           dma_display->drawPixelRGB888(x + z, y + q, 0xFF, 0xFF, 0x00);

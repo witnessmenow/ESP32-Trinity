@@ -1,14 +1,20 @@
 # ESP32-i2s-Matrix-Shield
-Info, instructions and examples for the [ESP32 i2s Matrix Shield available on Tindie](https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
+Info, instructions and examples for the ESP32 i2s Matrix Shield, a shield for controlling HUB75 matrix panels with an ESP32 dev board.
 
 ![img](https://cdn.tindiemedia.com/images/resize/0KEMu_q8ZZl2meIWinbTlUCxH8M=/p/fit-in/1370x912/filters:fill(fff)/i/528221/products/2020-07-11T16%3A30%3A52.947Z-IMG_20200711_151941.jpg)
+
+## Where To Buy?
+
+- [My Tindie Store - Ships from EU](https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/)
+- [Eplop (Colin Hickey) - Ships from the UK](https://store.eplop.co.uk/product/esp32-i2s-matrix-shield/)
+- [Colin's eBay Store - Ships from UK, but VAT applied for EU](https://www.ebay.co.uk/itm/174822458332)
 
 ## Aditional Hardware Required
 
 To use this shield you will need the following additional things
 
-- ESP32 Mini32 Development board (ESP32 D1 Mini)
-    - [Aliexpress\*]( https://s.click.aliexpress.com/e/_dSi824B)
+- ESP32 Mini32 Development board (ESP32 D1 Mini) - NOTE: Get the CP2104 version, there is a CH9102 version that does not seem to program
+    - [Aliexpress\*]( https://s.click.aliexpress.com/e/_AYPehO) (pick the **CP2104 Drive** version)
     - [Amazon.com\*](https://amzn.to/3gArkAY)
     - Also available as an add-on on the Tindie listing
 - RGB LED Matrix. Please note that I can not gaurantee the following displays will defintly work with the library/board, They are ones I have bought in the past and work, but sellers have changed stock before.

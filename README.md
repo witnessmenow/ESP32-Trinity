@@ -1,4 +1,4 @@
-# ESP32-i2s-Matrix-Shield
+# ESP32-Trinity
 
 **This board will be open source when finished, but it's not finalized yet**
 

@@ -53,7 +53,7 @@ bool changeDriver = false;
 // -------   Other Config Config   ------
 // -------------------------------------
 
-#define TOUCH_THRESHOLD 40 // Bigger Threshold == more sensitive (resting is about 48)
+#define TOUCH_THRESHOLD 38 // Bigger Threshold == more sensitive (resting is about 48)
 
 #define SHOW_TIME 10
 
@@ -117,19 +117,18 @@ void processSand(void *param) {
 
   //Default ESP32 i2c pins (21,22)
   Wire.begin(SDA, SCL, 400000);
+  Wire.beginTransmission (0x68);
+  if (Wire.endTransmission () == 0){
+    mpuReady = true;
+    mpu6050 = new MPU6050(Wire);
+    mpu6050->begin();
+  }
   //mpu6050->begin();
 
 
   while (true) {
-    if (touchRead(T9) < 2 && touchRead(T9) < 2 ) //REading twice to try avoid bounce
+    if (mpuReady) //REading twice to try avoid bounce
     {
-      if (!mpuReady) {
-        mpu6050 = new MPU6050(Wire);
-        mpu6050->begin();
-        Serial.println("mpuReady set to true");
-        mpuReady = true;
-        delay(1);
-      }
       // Limit the animation frame rate to MAX_FPS.  Because the subsequent sand
       // calculations are non-deterministic (don't always take the same amount
       // of time, depending on their current states), this helps ensure that
@@ -218,10 +217,6 @@ void processSand(void *param) {
         }
       }
     } else {
-      if (mpuReady) {
-        mpuReady = false;
-        Serial.println("mpuReady set to false");
-      }
       delay(1);
     }
 
@@ -254,6 +249,7 @@ void displayReconfig() {
   // Display Setup
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
   dma_display->begin();
+  dma_display->setBrightness8(255); //0-255
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -395,6 +391,7 @@ void setup() {
 
 void displayText() {
   dma_display->flipDMABuffer();
+  dma_display->setPanelBrightness(32);
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);
 
@@ -416,10 +413,13 @@ void displayText() {
 }
 
 
+bool displayIsWhite = false;
 void displayPowerTest(){
-  dma_display->flipDMABuffer();
-  dma_display->fillScreen(myWHITE);
-  dma_display->showDMABuffer();
+  if(!displayIsWhite){
+    dma_display->setPanelBrightness(200);
+    dma_display->fillScreen(myWHITE);
+    displayIsWhite = true;
+  }
 }
 
 bool powerTestMode = false;
@@ -434,15 +434,16 @@ void loop() {
   }
 
   int value = touchRead(T8);
-  touchRead(T9); // seems to work better when there is a different pin read inbetween
+  int notValue = touchRead(T9); // seems to work better when there is a different pin read inbetween
   int value2 = touchRead(T8);
-  touchRead(T9);
+  int notValue2 = touchRead(T9);
   //Serial.println(value);
-  if (!mpuReady && (value < TOUCH_THRESHOLD || value2 < TOUCH_THRESHOLD)) {
+  if (!mpuReady && (value < TOUCH_THRESHOLD || value2 < TOUCH_THRESHOLD) && (notValue > TOUCH_THRESHOLD || notValue2 > TOUCH_THRESHOLD)) {
     if (!powerTestMode) {
       if (longPress) {
         if (longPressDue <= now) {
           powerTestMode = true;
+          displayIsWhite = false;
         }
       } else {
         longPress = true;

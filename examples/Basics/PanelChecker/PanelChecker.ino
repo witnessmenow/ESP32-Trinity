@@ -1,25 +1,36 @@
 /*******************************************************************
-    An example showing different size fonts in different colours
+    A modified version of the hello world code that is quick way to try
+    out some of the library configurations to test what works best on your
+    matrix panel.
 
-    For use with my ESP32 Trinity or I2S Matrix Shield.
+    Usage:
+    On startup touch none/either/both of the built-in touch pads of the Trinity
+    to enable different modes
+    
+    T8:
+    Not Touched -> clkphase defaults to true
+    Touched -> mxconfig.clkphase = false;
 
-    ESP32Trinity.com
+    T9:
+    Not Touched -> Does not set a special driver
+    Touched -> mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+
+    If you want to try a different combination, touch the buttons and press
+    reset.
 
     Parts Used:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
-      = Affilate
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
 
     Written by Brian Lough
-    YouTube: https://www.youtube.com/brianlough
-    Tindie: https://www.tindie.com/stores/brianlough/
-    Twitter: https://twitter.com/witnessmenow
+      YouTube: https://www.youtube.com/brianlough
+      Tindie: https://www.tindie.com/stores/brianlough/
+      Twitter: https://twitter.com/witnessmenow
  *******************************************************************/
+
 // ----------------------------
 // Additional Libraries - each one of these will need to be installed.
 // ----------------------------
@@ -30,11 +41,12 @@
 // Can be installed from the library manager (Search for "ESP32 MATRIX DMA")
 // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA
 
+
 // ----------------------------
 // Dependency Libraries - each one of these will need to be installed.
 // ----------------------------
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
@@ -42,11 +54,13 @@
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;      // Total number of panels chained one to another
 
-// -----------------------------
+// See the "displaySetup" method for more display config options
+
+//------------------------------------------------------------------------------------------------------------------
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
 
@@ -56,11 +70,11 @@ uint16_t myRED = dma_display->color565(255, 0, 0);
 uint16_t myGREEN = dma_display->color565(0, 255, 0);
 uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
-void displayReconfig() {
+void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // module width
+    panelResY,   // module height
+    panel_chain    // Chain length
   );
 
 
@@ -100,8 +114,16 @@ void displayReconfig() {
   // Display Setup
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
   dma_display->begin();
+}
 
-  dma_display->clearScreen();
+
+void setup() {
+
+  Serial.begin(115200);
+
+  displaySetup();
+
+    dma_display->clearScreen();
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);
 
@@ -119,14 +141,6 @@ void displayReconfig() {
   dma_display->setTextColor(myRED);
   dma_display->setCursor(0, 24);
   dma_display->print("Hello");
-}
-
-
-void setup() {
-
-  Serial.begin(115200);
-
-  displayReconfig();
 
 }
 

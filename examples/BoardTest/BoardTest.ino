@@ -1,14 +1,34 @@
 /*******************************************************************
-    Test sketch for the ESP32 trinity
+    The test sketch that was ran on every Trinity during testing.
 
+    It is a cobination of some of the other examples:
+      - Hello World
+      - Colour Test (just the white part)
+      - Falling Sand
+
+    Test Plan: https://docs.google.com/document/d/1qsUxOhy46KIdXQSgn7aRdTakC7ZFmpyDvrdVMjQUISQ/edit?usp=sharing
+
+    NOTE: !!! Careful! This sketch will use a lot of power!
+
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
+
+    If you find what I do useful and would like to support me,
+    please consider becoming a sponsor on Github
+    https://github.com/sponsors/witnessmenow/
+
+    Written by Brian Lough
+      YouTube: https://www.youtube.com/brianlough
+      Tindie: https://www.tindie.com/stores/brianlough/
+      Twitter: https://twitter.com/witnessmenow
  *******************************************************************/
 
 // ----------------------------
-// Makerfabs - common matrix config changes. 
+// Makerfabs - common matrix config changes.
 // ----------------------------
 
-bool changeClkPhase = true;
-bool changeDriver = false;
+bool changeClkPhase = false;
+bool changeDriver = true;
 
 // ----------------------------
 // Standard Libraries
@@ -45,9 +65,11 @@ bool changeDriver = false;
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;      // Total number of panels chained one to another
+
+// See the "displaySetup" method for more display config options
 
 // -------------------------------------
 // -------   Other Config Config   ------
@@ -100,7 +122,7 @@ struct pixel {
 
 
 pixel pixels[PIXEL_COUNT];
-uint16_t screenPixels[PANEL_RES_X][PANEL_RES_Y];
+uint16_t screenPixels[panelResX][panelResY];
 
 
 // Second Core Stuff
@@ -118,7 +140,7 @@ void processSand(void *param) {
   //Default ESP32 i2c pins (21,22)
   Wire.begin(SDA, SCL, 400000);
   Wire.beginTransmission (0x68);
-  if (Wire.endTransmission () == 0){
+  if (Wire.endTransmission () == 0) {
     mpuReady = true;
     mpu6050 = new MPU6050(Wire);
     mpu6050->begin();
@@ -175,9 +197,9 @@ void processSand(void *param) {
           }
           newX = (float)pixels[p].x + newDx;
           newY = (float)pixels[p].y + newDy;
-          if (newX > PANEL_RES_X - 1) newX = PANEL_RES_X - 1;
+          if (newX > panelResX - 1) newX = panelResX - 1;
           if (newX < 0) newX = 0;
-          if (newY > PANEL_RES_Y - 1) newY = PANEL_RES_Y - 1;
+          if (newY > panelResY - 1) newY = panelResY - 1;
           if (newY < 0) newY = 0;
           uint8_t x = (uint8_t)newX;
           uint8_t y = (uint8_t)newY;
@@ -227,9 +249,9 @@ bool reconfigDisplay = false;
 
 void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // module width
+    panelResY,   // module height
+    panel_chain    // Chain length
   );
 
   mxconfig.double_buff = true;
@@ -268,7 +290,6 @@ void displayFallingSand() {
   uint32_t t;
   while (((t = micros()) - loopPreviousT) < (1000000L / DISPLAY_FPS));
   loopPreviousT = t;
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(0x0);
   //  mpu6050->update();
   //
@@ -281,8 +302,8 @@ void displayFallingSand() {
     dma_display->drawPixelRGB888(pixels[p].ix, pixels[p].iy, pixels[p].r, pixels[p].g, pixels[p].b);
   }
 
-  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
-    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
+  for (uint8_t z = 6; z < panelResX; z += 16) {
+    for (uint8_t q = 6; q < panelResY; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           dma_display->drawPixelRGB888(x + z, y + q, 0xFF, 0xFF, 0x00);
@@ -298,7 +319,7 @@ void displayFallingSand() {
   dma_display->setCursor(1, 1);
   dma_display->print("FPS:");  dma_display->print(fps.getStringFPS());
 #endif
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 void setup() {
@@ -316,8 +337,8 @@ void setup() {
     }
   }
 
-  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
-    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
+  for (uint8_t z = 6; z < panelResX; z += 16) {
+    for (uint8_t q = 6; q < panelResY; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           screenPixels[x + z][y + q] = 60000;
@@ -350,8 +371,8 @@ void setup() {
 
 
     pixels[p] = pixel{
-      random(0, PANEL_RES_X),
-      random(0, PANEL_RES_Y),
+      random(0, panelResX),
+      random(0, panelResY),
       0,
       0,
       (float)random(90 , 100) / 100,
@@ -377,7 +398,6 @@ void setup() {
   dma_display->fillScreen(0x0);
   dma_display->setTextColor(0xFFFF);
   dma_display->setTextSize(1);
-  dma_display->showDMABuffer();
 
   delay(1000);
 
@@ -387,10 +407,10 @@ void setup() {
   dma_display->setTextSize(1);
   fps.getReady();
 #endif
+  dma_display->flipDMABuffer();
 }
 
 void displayText() {
-  dma_display->flipDMABuffer();
   dma_display->setPanelBrightness(32);
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);
@@ -409,20 +429,22 @@ void displayText() {
   dma_display->setTextColor(myRED);
   dma_display->setCursor(0, 24);
   dma_display->print("Hello");
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 
 bool displayIsWhite = false;
-void displayPowerTest(){
-  if(!displayIsWhite){
+void displayPowerTest() {
+  if (!displayIsWhite) {
     dma_display->setPanelBrightness(200);
     dma_display->fillScreen(myWHITE);
+    dma_display->flipDMABuffer();
     displayIsWhite = true;
   }
 }
 
 bool powerTestMode = false;
+bool helloWorldDisplayed = false;
 
 void loop() {
 
@@ -449,19 +471,24 @@ void loop() {
         longPress = true;
         longPressDue = now + delayForLongPress;
       }
-    } else if(!longPress){
+    } else if (!longPress) {
       // Have a touch when power saver mode is on
       powerTestMode = false;
     }
-  } else if(longPress) {
+  } else if (longPress) {
     longPress = false;
   }
 
-  if(powerTestMode) {
+  if (powerTestMode) {
     displayPowerTest();
+    helloWorldDisplayed = false;
   } else if (mpuReady) {
     displayFallingSand();
+    helloWorldDisplayed = false;
   } else {
-    displayText();
+    if (!helloWorldDisplayed) {
+      displayText();
+      helloWorldDisplayed = true;
+    }
   }
 }

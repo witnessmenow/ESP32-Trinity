@@ -1,4 +1,19 @@
-// An example showing different size fonts in different colours
+/*******************************************************************
+ 
+    A simple example showing different size fonts in different colours
+
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
+
+    If you find what I do useful and would like to support me,
+    please consider becoming a sponsor on Github
+    https://github.com/sponsors/witnessmenow/
+    
+    Written by Brian Lough
+      YouTube: https://www.youtube.com/brianlough
+      Tindie: https://www.tindie.com/stores/brianlough/
+      Twitter: https://twitter.com/witnessmenow
+ *******************************************************************/
 
 
 // ----------------------------
@@ -24,9 +39,16 @@
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module. 
+const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;      // Total number of panels chained one to another
+
+// Note about chaining panels:
+// By default all matrix libraries treat the panels as been connected horizontally
+// (one long display). The I2S Matrix library supports different display configurations
+// Details here: 
+
+// See the setup method for more display config options
 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -38,32 +60,41 @@ uint16_t myRED = dma_display->color565(255, 0, 0);
 uint16_t myGREEN = dma_display->color565(0, 255, 0);
 uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
-
 void setup() {
 
   Serial.begin(115200);
+  
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // module width
+    panelResY,   // module height
+    panel_chain    // Chain length
   );
 
+  // This is how you enable the double buffer.
+  // Double buffer can help with animation heavy projects
+  // It's not needed for something simple like this, but some
+  // of the other examples make use of it.
+  
   //mxconfig.double_buff = true;
+
+  // If you are using a 64x64 matrix you need to pass a value for the E pin
+  // The trinity connects GPIO 18 to E.
+  // This can be commented out for any smaller displays (but should work fine with it)
   mxconfig.gpio.e = 18;
 
 
   // May or may not be needed depending on your matrix
   // Example of what needing it looks like:
   // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
-  //mxconfig.clkphase = false;
-  
+  mxconfig.clkphase = false;
+
+  // Some matrix panels use different ICs for driving them and some of them have strange quirks.
+  // If the display is not working right, try this.
   //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
 
   // Display Setup
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
   dma_display->begin();
-
-
   dma_display->clearScreen();
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);

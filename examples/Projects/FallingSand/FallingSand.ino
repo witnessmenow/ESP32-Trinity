@@ -67,6 +67,9 @@
 // -------   Other Config Config   ------
 // -------------------------------------
 
+#define CAP_BUTTONS 1 // Comment this out if not using a Trinity
+#define TOUCH_THRESHOLD 40 // Bigger Threshold == more sensitive (resting is about 48)
+
 #define SHOW_TIME 10
 
 #define MAX_FPS      100 // Maximum redraw rate, frames/second
@@ -212,30 +215,54 @@ void processSand(void *param) {
   }
 }
 
-//------------------------------------------------------------------------------------------------------------------
-void setup() {
+bool changeClkPhase = false;
+bool changeDriver = false;
+bool reconfigDisplay = false;
 
-  //Serial.begin(115200); // I only enable this for debug
+void gotTouch8(){
+ changeClkPhase = true;
+ reconfigDisplay = true;
+}
+
+void gotTouch9(){
+ changeDriver = true;
+ reconfigDisplay = true;
+}
+
+void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
     PANEL_RES_X,   // module width
     PANEL_RES_Y,   // module height
     PANEL_CHAIN    // Chain length
   );
-  
+
   mxconfig.double_buff = true;
   mxconfig.gpio.e = 18;
 
-  // May or may not be needed depending on your matrix
-  // Example of what needing it looks like:
-  // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
-  mxconfig.clkphase = false;
+  if (changeClkPhase) {
+    // May or may not be needed depending on your matrix
+    // Example of what needing it looks like:
+    // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
+    mxconfig.clkphase = false;
+  }
 
-  //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+  if (changeDriver) {
+    mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+  }
 
   // Display Setup
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
   dma_display->begin();
+}
 
+//------------------------------------------------------------------------------------------------------------------
+void setup() {
+
+  Serial.begin(115200); // I only enable this for debug
+  displayReconfig();
+
+  touchAttachInterrupt(T8, gotTouch8, TOUCH_THRESHOLD);
+  touchAttachInterrupt(T9, gotTouch9, TOUCH_THRESHOLD);
 
   for (uint8_t y = 0; y < MATRIX_HEIGHT; y++) {
     for (uint8_t x = 0; x < MATRIX_WIDTH; x++) {
@@ -318,6 +345,11 @@ void setup() {
 uint32_t loopPreviousT;
 
 void loop() {
+
+  if(reconfigDisplay){
+    reconfigDisplay = false;
+    displayReconfig();
+  }
 
   uint32_t t;
   while (((t = micros()) - loopPreviousT) < (1000000L / DISPLAY_FPS));

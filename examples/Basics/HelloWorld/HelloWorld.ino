@@ -60,10 +60,7 @@ uint16_t myRED = dma_display->color565(255, 0, 0);
 uint16_t myGREEN = dma_display->color565(0, 255, 0);
 uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
-void setup() {
-
-  Serial.begin(115200);
-  
+void displaySetup() {
   HUB75_I2S_CFG mxconfig(
     panelResX,   // module width
     panelResY,   // module height
@@ -95,6 +92,14 @@ void setup() {
   // Display Setup
   dma_display = new MatrixPanel_I2S_DMA(mxconfig);
   dma_display->begin();
+}
+
+void setup() {
+
+  Serial.begin(115200);
+
+  displaySetup();
+  
   dma_display->clearScreen();
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);

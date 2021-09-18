@@ -1,7 +1,11 @@
 /*******************************************************************
-    Displays a gif on a matrix display
+    Displays gifs on a matrix display
 
-    The gif loaded is a 64 x 64 image.
+    This loads the gifs from memory, this is the fastest way
+    
+    But speeds probably isn't super important for this, there is an example with the I2S matrix
+    library tha loads the gifs from SPIFFS, which is probably a better way of doing it:
+    https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/AnimatedGIFPanel
 
     Gettting the Gifs:
       - This is a decent source of low res gifs: https://betterttv.com/emotes/top

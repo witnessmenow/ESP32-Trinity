@@ -10,23 +10,17 @@
     The image loaded is a 64 x 64 image, but it should display on smaller
     matrix (just be cut off).
 
-    Parts:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
-    More info on the shield: https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield
-
- *  * = Affilate
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
 
-
     Written by Brian Lough
-    YouTube: https://www.youtube.com/brianlough
-    Tindie: https://www.tindie.com/stores/brianlough/
-    Twitter: https://twitter.com/witnessmenow
+      YouTube: https://www.youtube.com/brianlough
+      Tindie: https://www.tindie.com/stores/brianlough/
+      Twitter: https://twitter.com/witnessmenow
  *******************************************************************/
 
 // ----------------------------

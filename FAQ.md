@@ -4,42 +4,40 @@ This section is a lie because as of the time of writing, nobody has asked any qu
 
 ## Table of Contents:
 
-- [Should I buy this version or the PxMatrix version](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#should-i-buy-this-version-or-the-pxmatrix-version)
-- [Will it work with my display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#will-it-work-with-my-display)
-- [What pins are used by the display](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-used-by-the-display)
-- [What pins are available to use for sensors etc](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
-- [Can I connect a SPI sensor/device to the shield](https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#device-to-the-shield)
+- [Does this work with PxMatrix?](/FAQ.md#does-this-work-with-pxmatrix)
+- [Will it work with my display](/FAQ.md#will-it-work-with-my-display)
+- [What pins are used by the display](/FAQ.md#what-pins-are-used-by-the-display)
+- [What pins are available to use for sensors etc](/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
+- [Can I connect a SPI sensor/device to the shield](/FAQ.md#device-to-the-shield)
 
 ---
 
-### Should I buy this version or the PxMatrix version?
+### Does this work with PxMatrix?
 
-Tough one to get us started! 
-
-**Advantages of the PxMatrix version:**
-- No need to edit the library header file.
-- PxMatrix has proven good support.
-- PxMatrix more than likely supports more differnt styles of panels. Some of the matrix panels have strange layouts and scan patters which PxMatrix can handle.
-- There are alot of examples of PxMatrix projects.
+No it does not, it is designed to work with the I2S-DMA matrix library
 
 **Advantages of the i2s version:**
-- Simpler to use than PxMatrix (other than editing the header file)
-- The shield is pyhsically smaller
+- Simpler to use than PxMatrix
 - Does not need the ribbon cable to the out connector
 - I2S library is faster - [Check out Aaron Christophel's FPS comparison!](https://www.youtube.com/watch?v=HKWDGangWU0)
 - It has a better chance with working with multiple number displays. PxMatrix supports multiple displays, but struggled to handle over 3. The I2S library has a better chance of working with more ([@MLE_Online has tested it with 4 so far](https://twitter.com/MLE_Online/status/1291547518493274113))
 
-Personally, for future projects I will more than likely use the i2s version as my go to. If you are a beginner, maybe PxMatrix is an easier choice due to all the examples.
+For future projects I will use the i2s version as my go to.
+
+One advantage of PxMatrix is that it has more support for different styles of panels. Some of the matrix panels have strange layouts and scan patters which PxMatrix can handle.
+
 
 ### Will it work with my display?
 
-Honestly, I can't answer that for sure, all I can say is it should work with any display that works with the [ESP32-RGB64x32MatrixPanel-I2S-DMA library](https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA). I can't guarantee that all display's will work. 
+Honestly, I can't answer that for sure, all I can say is it should work with any display that works with the [ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA). I can't guarantee that all display's will work.
+
+The Trinity has mainly been tested on 64x32 and 64x64 Matrix panels.
 
 Even links to displays I have bought in past that work are subject to new stock/revisions (this happened previously).
 
 ### What pins are used by the display?
 
-[The schematic of the product can be found here](https://i.imgur.com/wbVGML8.png). 
+[The schematic of the product can be found in the hardware section](/hardware/). 
 
 Here is a list of pins that are used by the display:
 
@@ -55,7 +53,7 @@ Here is a list of pins that are used by the display:
 #define B_PIN_DEFAULT   19
 #define C_PIN_DEFAULT   5
 #define D_PIN_DEFAULT   17
-#define E_PIN_DEFAULT   18 // This is the only change from the deafult pins of the library
+#define E_PIN_DEFAULT   18 // This is the only change from the default pins of the library
           
 #define LAT_PIN_DEFAULT 4
 #define OE_PIN_DEFAULT  15
@@ -65,23 +63,31 @@ Here is a list of pins that are used by the display:
 
 ###  What pins are available to use for sensors etc
 
-V1.2 and above of the shield has the two i2c pins which are broken out to the accelerometer pads. These are the default i2c pins for the ESP32 so you should just be able to use the Wire object without specifying pins
+The following pins are broken out 
 
-```
-#define SDA 21
-#define SCL 22
-```
+#### The Add-on area:
 
-V1.3 added some more pins to the accelerometer pads:
+- 21 (SDA)
+- 22 (SCL)
+- 32 (Also used by T9 Touch pad)
+- 33 (Also used by T8 Touch pad)
+- 2  (Shared with the onboard LED)
+- 34 (Input only pin)
 
-- 32
-- 33
-- 34 (this is an input only pin)
-- 2 (this is shared with the onboard LED of the ESP32 board)
+#### LDR
+
+- 35 (Input only, 10K pull-down)
+
+#### UART
+
+- TX
+- RX
+
+All other ESP32 pins are used by the matrix
 
 ###  Can I connect a SPI sensor/device to the shield?
 
-It is possible to connect SPI devices to V1.3 shields (V1.2 doesn't have enough pins broken out). Some of the default SPI pins are used by the Matrix, but I have succesfully used an SPI device using the following pins:
+It is possible to connect SPI devices but some of the default SPI pins are used by the Matrix. I have successfully used an SPI device using the following pins:
 
 ```
 #define NFC_SCLK 33
@@ -92,15 +98,32 @@ It is possible to connect SPI devices to V1.3 shields (V1.2 doesn't have enough 
 
 You will need to use these pins in your SPI.begin command:
 
-`spi->begin(NFC_SCLK, NFC_MISO, NFC_MOSI, NFC_SS);`
-
-[Untested by me] Some libraries for devices do not allow you to pass in custom pins, but a lot seem to allow you pass in an SPI interface. Here is an example using an SD card:
-
 ```
 SPIClass spi = SPIClass(HSPI);
 spi.begin(NFC_SCLK, NFC_MISO, NFC_MOSI, NFC_SS);
 SD.begin(NFC_SS, spi, 80000000);
 ```
-[Source of SD card info](https://www.instructables.com/Select-SD-Interface-for-ESP32/) 
 
+For more details check out the [SDCardTest Example](/examples/TrinityFeatures/SDCardTest)
+
+### My colours are mixed up/not right
+
+Well thats not technically a question, but I get you!
+
+Some matrix panels have some of the colour channels swapped around for some reason. The most common one I've seen is Blue and Green mixed, which seems to lead to a lot of purple images. 
+
+To fix the Green Blue issue you can do the following in your display setup:
+
+
+```
+mxconfig.gpio.b1 = 26; // 26 is usually g1
+mxconfig.gpio.b2 = 12; // 12 is usually g2
+
+mxconfig.gpio.g1 = 27; // 27 is usually b1
+mxconfig.gpio.g2 = 13; // 13 is usually b2
+```
+
+### Does it work with the Pixel Purse?
+
+I have not tried, but the I2S Matrix library doesn't seem to support it by default, but there seems to be a trick to get it working and they have provided an example specifically for it [here.](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/P6_32x16_1_4_ScanPanel)
 

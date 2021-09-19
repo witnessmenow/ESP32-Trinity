@@ -23,7 +23,7 @@ To use the Trinity you will need the following additional things
     - [5V 8A laptop style power supply\*]( https://s.click.aliexpress.com/e/_d7uVLXt) - How much power the display uses varies based on how many LEDs are on, but this should cover you for anything you want to draw.
     - Any USB-C Power supply
 
-* = affiliate link
+\* = affiliate link
 
 ## Getting Started With Your Trinity
 

@@ -40,12 +40,12 @@ This is a collection of some of the projects I've written for the Trinity that y
 *Note:* This is not a full list of projects I've made as some will have their own repos. Please check the Project Section for a full list of my projects and user contributed ones.
 
 - [FallingSand](Projects/FallingSand):
-A fun project that emulates sand falling on the Matrix using an accelerometer module. This was originally created by [Tetra3DPrint](https://twitter.com/tetra3dprint) and ported to the I2S matrix library by me
+A fun project that emulates sand falling on the Matrix using an accelerometer module. This was originally created by [Tetra3DPrint](https://twitter.com/tetra3dprint) and ported to the I2S matrix library by me. 
 **Additional Requirements:** GY521 Accelermoter Module
 - [SnakeWithNunchuck](Projects/SnakeWithNunchuck)
-I'm tired of these monkey fighting snakes on this Monday to Friday Matrix! A simple version of the clasic game controlled by a Nintendo Wii Nunchuck **Additional Requirements:** Wii Nunchuck and an adaptor
+I'm tired of these monkey fighting snakes on this Monday to Friday Matrix! A simple version of the clasic game controlled by a Nintendo Wii Nunchuck. **Additional Requirements:** Wii Nunchuck and an adaptor
 - [TetrisWithNunchuck](Projects/TetrisWithNunchuck)
-Please don't sue me EA. Tetris on your matrix controlled by a Wii Nunchuck **Additional Requirements:** Wii Nunchuck and an adaptor
+Please don't sue me EA. Tetris on your matrix controlled by a Wii Nunchuck. **Additional Requirements:** Wii Nunchuck and an adaptor
 - [WifiTetrisClock](Projects/WifiTetrisClock)
 Really, Please don't sue me EA. A clock displayed using falling matrix blocks. [Video about it here](https://www.youtube.com/watch?v=ey2mjZ-UQNM) but it refers to the original project I ported this code from.
 - [WifiTetrisClockWifiManager](Projects/WifiTetrisClockWifiManager)

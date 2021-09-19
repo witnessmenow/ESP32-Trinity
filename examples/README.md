@@ -52,6 +52,8 @@ Really, Please don't sue me EA. A clock displayed using falling matrix blocks. [
 The same as above, but uses WiFi manager to manage your Wifi details and other configs.
 - [YouTubeLivestreamDraw](Projects/YouTubeLivestreamDraw)
 Allow your livestream viewers chat draw on your matrix, what could go wrong? [See in action on Unexpected Makers channel](https://www.youtube.com/watch?v=qZgrMAGGyhM&t=5592s)
+- [TrafficLight](Projects/TrafficLight)
+A simple traffic light that changes based on time.
 
 ### But I still haven't found what I'm looking for
 

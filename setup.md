@@ -8,29 +8,32 @@ This page will cover the basics of setting up the ESP32 Trinity
 
 Note: The Trinity has mainly been tested using 64x32 and 64x64 matrix panels.
 
-- On most displays, there are two connectors. There are arrows on the PCB of the display, the connector that the arrows are moving away from is the input. Insert the Trinity into this connector (there are arrows on the Trinity that should match the direction of the arrows on the display's PCB)
-- Most display's come with a power cable, connect that to the display and also to the green screw terminals of the shield. (Red = 5V, black = GND)
+- On most displays, there are two connectors. There are arrows on the PCB of the display, the connector that the arrows are moving away from is the input. Insert the Trinity into this connector (there are arrows on the Trinity that should match the direction of the arrows on the display's PCB). The Trinity connector is keyed so it can only be plugged in the correct way (once you pick the right connector!)
+- Most display's come with a power cable, connect that to the display and also to the green screw terminals of the Trinity. (Red cable = 5V, black cable = GND)
 
 ### Powering the project
 
 #### Power info
 
-- **The Trinity and display take 5V only!**. 
+- **The Trinity and display take 5V only!**.
 - The recommend way of powering the board is to one of the following:
-     - The 2.1mm barrel jack
-     - The USB-C port 
-     - The red and black screw terminals. 
+  - The 2.1mm barrel jack
+  - The USB-C port (will not power the matrix out of the box, please see the section below for details)
+  - The red and black screw terminals.
+- All methods of powering the board will also supply power to the ESP32.
 - The amount of amps needed depends on how many LEDs your project uses and how bright you make them, but I recommend roughly 3A for a 64x32 display to cover all scenarios and maybe 4A for a 64x64. I would also recommend allowing some head room, especially if you are getting a cheaper supply.
-- The USB-C connector can also be used to power the project, but please see note in the **Power Configuration** section. It is limited by a 1.5/3 Amp poly fuse to ensure compatibility with lower power USB supplies. This means the fuse may cut-off on current draws of 1.5A or higher, but will definitely cut off at draws of 3A. It is possible to bypass this fuse.
 
-#### Power Configuration
+#### Powering the matrix panel using USB-C
 
-There is a 3pin connector with a jumper pin on the Trinity, this is for configuring the power setup. 
+By default the Trinity stops the USB-C power from reaching the Matrix panel. This is because some lower Amperage USB sources, such as your PC's USB port, may not be able to provide the power required to drive the display.
 
-**Please note: "Diode Bypass" is not recommended when programming programming the Trinity, as your PC's USB port might not be able to provide the required current for the display.**
+If you are using a higher Amperage USB supply, such as a phone charger, you can enable powering the matrix via USB-C by moving the jumper pin to the two pins nearest the USB connector. (labeled "Diode Bypass")
 
-- **Jumper on the two pins nearest the USB connector, labeled "diode bypass"** - This allows you to power the matrix display using the USB-C connector.
-- **Any other jumper config (including removing)** - The barrel jack/screw terminals will power your display and provide power your ESP32. USB can be connected for programming, but will not power the matrix. 
+Powering the display via USB-C is limited by a 1.5/3 Amp poly fuse to protect your USB power supply. This basically means the fuse may cut-off on current draws of 1.5A or higher, but will definitely cut off at draws of 3A (the max USB supports @ 5V). It is possible to bypass this fuse, but do so at your own risk.
+
+Any other configuration for the jumper (including removing it) will return the default behavior of not allowing USB-C power to reach the Matrix panel.
+
+**Please note: "Diode Bypass" should be removed when programming the Trinity, as you may damage your PC's USB port if the display tries to draw too much power.**
 
 ## Software Setup
 
@@ -43,7 +46,6 @@ The Trinity uses the CH340 USB to UART chip. If you do not have a driver already
 You will need to have the ESP32 setup for your Arduino IDE, [instructions can be found here](https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html).
 
 You can then select basically any ESP32 board in the boards menu. (I usually use "Wemos D1 Mini ESP32", but it doesn't really matter)
-
 
 ### Library despondencies
 

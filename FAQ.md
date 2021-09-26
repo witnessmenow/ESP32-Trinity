@@ -6,9 +6,12 @@ This section is a lie because as of the time of writing, nobody has asked any qu
 
 - [Does this work with PxMatrix?](/FAQ.md#does-this-work-with-pxmatrix)
 - [Will it work with my display](/FAQ.md#will-it-work-with-my-display)
+- What do I do if the Trinity does not fit correctly into my display?
 - [What pins are used by the display](/FAQ.md#what-pins-are-used-by-the-display)
 - [What pins are available to use for sensors etc](/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
-- [Can I connect a SPI sensor/device to the shield](/FAQ.md#device-to-the-shield)
+- [Can I connect a SPI sensor/device to the Trinity](/FAQ.md#device-to-the-trinity)
+- My colours are mixed up/not right
+- Does it work with the Pixel Purse?
 
 ---
 
@@ -17,6 +20,7 @@ This section is a lie because as of the time of writing, nobody has asked any qu
 No it does not, it is designed to work with the I2S-DMA matrix library
 
 **Advantages of the i2s version:**
+
 - Simpler to use than PxMatrix
 - Does not need the ribbon cable to the out connector
 - I2S library is faster - [Check out Aaron Christophel's FPS comparison!](https://www.youtube.com/watch?v=HKWDGangWU0)
@@ -26,7 +30,6 @@ For future projects I will use the i2s version as my go to.
 
 One advantage of PxMatrix is that it has more support for different styles of panels. Some of the matrix panels have strange layouts and scan patters which PxMatrix can handle.
 
-
 ### Will it work with my display?
 
 Honestly, I can't answer that for sure, all I can say is it should work with any display that works with the [ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA). I can't guarantee that all display's will work.
@@ -35,9 +38,15 @@ The Trinity has mainly been tested on 64x32 and 64x64 Matrix panels.
 
 Even links to displays I have bought in past that work are subject to new stock/revisions (this happened previously).
 
+### What do I do if the Trinity does not fit correctly into my display?
+
+These matrix panels come in a huge variety of shapes and designs and it's impossible to design something that fits them all, but don't worry, I have a work around!
+
+Included with each Trinity is a 2x8p stacking header, you can insert this into the input connector of the matrix panel and then plug the Trinity into that, this will raise the trinity up a CM or so. It is surprisingly solid!
+
 ### What pins are used by the display?
 
-[The schematic of the product can be found in the hardware section](/hardware/). 
+[The schematic of the product can be found in the hardware section](/hardware/).
 
 Here is a list of pins that are used by the display:
 
@@ -54,16 +63,16 @@ Here is a list of pins that are used by the display:
 #define C_PIN_DEFAULT   5
 #define D_PIN_DEFAULT   17
 #define E_PIN_DEFAULT   18 // This is the only change from the default pins of the library
-          
+
 #define LAT_PIN_DEFAULT 4
 #define OE_PIN_DEFAULT  15
 
 #define CLK_PIN_DEFAULT 16
 ```
 
-###  What pins are available to use for sensors etc
+### What pins are available to use for sensors etc
 
-The following pins are broken out 
+The following pins are broken out
 
 #### The Add-on area:
 
@@ -71,7 +80,7 @@ The following pins are broken out
 - 22 (SCL)
 - 32 (Also used by T9 Touch pad)
 - 33 (Also used by T8 Touch pad)
-- 2  (Shared with the onboard LED)
+- 2 (Shared with the onboard LED)
 - 34 (Input only pin)
 
 #### LDR
@@ -85,7 +94,7 @@ The following pins are broken out
 
 All other ESP32 pins are used by the matrix
 
-###  Can I connect a SPI sensor/device to the shield?
+### Can I connect a SPI sensor/device to the Trinity?
 
 It is possible to connect SPI devices but some of the default SPI pins are used by the Matrix. I have successfully used an SPI device using the following pins:
 
@@ -110,10 +119,9 @@ For more details check out the [SDCardTest Example](/examples/TrinityFeatures/SD
 
 Well thats not technically a question, but I get you!
 
-Some matrix panels have some of the colour channels swapped around for some reason. The most common one I've seen is Blue and Green mixed, which seems to lead to a lot of purple images. 
+Some matrix panels have some of the colour channels swapped around for some reason. The most common one I've seen is Blue and Green mixed, which seems to lead to a lot of purple images.
 
 To fix the Green Blue issue you can do the following in your display setup:
-
 
 ```
 mxconfig.gpio.b1 = 26; // 26 is usually g1
@@ -126,4 +134,3 @@ mxconfig.gpio.g2 = 13; // 13 is usually b2
 ### Does it work with the Pixel Purse?
 
 I have not tried, but the I2S Matrix library doesn't seem to support it by default, but there seems to be a trick to get it working and they have provided an example specifically for it [here.](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/P6_32x16_1_4_ScanPanel)
-

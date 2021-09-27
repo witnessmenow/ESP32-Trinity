@@ -12,6 +12,7 @@ This section is a lie because as of the time of writing, nobody has asked any qu
 - [Can I connect a SPI sensor/device to the Trinity](/FAQ.md#device-to-the-trinity)
 - My colours are mixed up/not right
 - Does it work with the Pixel Purse?
+- Why is it called the "Trinity"?
 
 ---
 
@@ -134,3 +135,15 @@ mxconfig.gpio.g2 = 13; // 13 is usually b2
 ### Does it work with the Pixel Purse?
 
 I have not tried, but the I2S Matrix library doesn't seem to support it by default, but there seems to be a trick to get it working and they have provided an example specifically for it [here.](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/P6_32x16_1_4_ScanPanel)
+
+### Why is it called the "Trinity"?
+
+"Trinity" has a a lot of significance for Irish people.
+
+The Trinity Knots symbol is something from Irish/Celtic history and is instantly recognizable as a symbol of Ireland. There are examples of artifacts dating back to the 8th century with Trinity Knots on them.
+
+The Ireland national symbol is the shamrock, one of the main significances of the shamrock is a way to represent the Christian Holy Trinity. It's said that St Patrick used a shamrock to represent the Holy Trinity when he came to bring Christianity to Ireland.
+
+The most prestigious college in Ireland is Trinity college.
+
+While the above is all true, none of them is why it is called the Trinity. It is called the Trinity after the main female character from the Matrix movies. I felt that "Neo" was too close to "neopixels"

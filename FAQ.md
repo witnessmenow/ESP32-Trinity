@@ -138,7 +138,7 @@ I have not tried, but the I2S Matrix library doesn't seem to support it by defau
 
 ### Why is it called the "Trinity"?
 
-"Trinity" has a a lot of significance for Irish people.
+"Trinity" has a lot of significance for Irish people.
 
 The Trinity Knots symbol is something from Irish/Celtic history and is instantly recognizable as a symbol of Ireland. There are examples of artifacts dating back to the 8th century with Trinity Knots on them.
 

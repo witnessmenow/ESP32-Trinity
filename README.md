@@ -10,7 +10,12 @@ My main contribution to the open source community to date has been my Arduino li
 
 ## Where To Buy?
 
-Coming soon!
+Launching Friday the 8th of October.
+
+- My Tindie Store (Ships from EU) - [Sign up to be notified](https://www.tindie.com/products/brianlough/esp32-trinity/) 
+- China based resller
+- Australia based reseller
+- UK based reseller
 
 ## Additional Hardware Required
 

@@ -9,7 +9,12 @@ This page will cover the basics of setting up the ESP32 Trinity
 Note: The Trinity has mainly been tested using 64x32 and 64x64 matrix panels.
 
 - On most displays, there are two connectors. There are arrows on the PCB of the display, the connector that the arrows are moving away from is the input. Insert the Trinity into this connector (there are arrows on the Trinity that should match the direction of the arrows on the display's PCB). The Trinity connector is keyed so it can only be plugged in the correct way (once you pick the right connector!)
+
+![Picture showing the arrow on the display](/images/instructions/matrixArrow.jpg)
+
 - Most display's come with a power cable, connect that to the display and also to the green screw terminals of the Trinity. (Red cable = 5V, black cable = GND)
+
+![Picture showing the screw terminals](/images/instructions/screwTerminals.jpg)
 
 ### Powering the project
 
@@ -28,6 +33,8 @@ Note: The Trinity has mainly been tested using 64x32 and 64x64 matrix panels.
 By default the Trinity stops the USB-C power from reaching the Matrix panel. This is because some lower Amperage USB sources, such as your PC's USB port, may not be able to provide the power required to drive the display.
 
 If you are using a higher Amperage USB supply, such as a phone charger, you can enable powering the matrix via USB-C by moving the jumper pin to the two pins nearest the USB connector. (labeled "Diode Bypass")
+
+![Picture showing the screw terminals](/images/instructions/screwTerminals.jpg)
 
 Powering the display via USB-C is limited by a 1.5/3 Amp poly fuse to protect your USB power supply. This basically means the fuse may cut-off on current draws of 1.5A or higher, but will definitely cut off at draws of 3A (the max USB supports @ 5V). It is possible to bypass this fuse, but do so at your own risk.
 

@@ -12,12 +12,14 @@ My main contribution to the open source community to date has been my Arduino li
 
 ## Where To Buy?
 
-Launching Friday the 8th of October.
+- [My Tindie Store](https://www.tindie.com/products/brianlough/esp32-trinity/) (Ships from EU)
+- [Makerfabs](https://www.makerfabs.com/esp32-trinity.html) (Ships from China) - Available here at a reduced price. Makerfabs also sell the panels that have been tested with the Trinity.
+- [Unexpected Maker](https://unexpectedmaker.com/shop/esp32-trinity) (Ships from Australia)
+- [Colin Hickey](https://store.eplop.co.uk/product/esp32_trinity/) (Ships from UK)
 
-- My Tindie Store (Ships from EU) - [Sign up to be notified](https://www.tindie.com/products/brianlough/esp32-trinity/)
-- China based reseller
-- Australia based reseller
-- UK based reseller
+All Trinity's arrive assembled and have been fully tested.
+
+If you are interested in the Trinity and one of the reseller options suits better please do purchase from there, it being successful for resellers works out well for me too!
 
 ## Additional Hardware Required
 
@@ -42,7 +44,7 @@ I have provided lots of examples, including full projects, for you to try out to
 
 ## Ready To Go Projects
 
-Want to get something on your Trinity without doing any coding? Then check out these projects that are ready to flash onto your Trinity directly from your browser!
+Want to get something on your Trinity without doing any coding? Then check out [these projects](/webFlash.md) that are ready to flash onto your Trinity directly from your browser!
 
 ## FAQ
 

@@ -26,7 +26,7 @@ To use the Trinity you will need the following additional things
 - RGB LED Matrix. Please note that I can not guarantee the following displays will definitely work with the library/board, They are ones I have bought in the past and work, but sellers have changed stock before.
   - 64x32 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_dYz5DLt)
   - 64x64 P3 Matrix display - [Aliexpress\*](https://s.click.aliexpress.com/e/_BfjY0wfp)
-- A power supply, you can either use a barrel jack or USB-C (USB-C is limited to by a poly fuse)
+- A power supply, you can either use a barrel jack or USB-C (USB-C is limited too by a poly fuse)
   - [5V 8A laptop style power supply\*](https://s.click.aliexpress.com/e/_d7uVLXt) - How much power the display uses varies based on how many LEDs are on, but this should cover you for anything you want to draw.
   - Any USB-C Power supply
 

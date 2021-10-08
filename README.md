@@ -50,7 +50,7 @@ Have more questions? Maybe they are covered in the FAQ. [Check it out here.](/FA
 
 ## Support
 
-If you can't find what you need or have some additional questions, feel free to:
+If you can't find what you need or have some additional questions or suggestions, feel free to:
 
 - [Ask on my Discord](https://discord.gg/2enC6GW) - This will be the fastest as other helpful makers can jump in too!
 - Raise a Github Issue here

@@ -34,7 +34,7 @@ By default the Trinity stops the USB-C power from reaching the Matrix panel. Thi
 
 If you are using a higher Amperage USB supply, such as a phone charger, you can enable powering the matrix via USB-C by moving the jumper pin to the two pins nearest the USB connector. (labeled "Diode Bypass")
 
-![Picture showing the screw terminals](/images/instructions/screwTerminals.jpg)
+![Picture showing jumper block with jumper moved to diode bypass](/images/instructions/usbDiodeBypasss.jpg)
 
 Powering the display via USB-C is limited by a 1.5/3 Amp poly fuse to protect your USB power supply. This basically means the fuse may cut-off on current draws of 1.5A or higher, but will definitely cut off at draws of 3A (the max USB supports @ 5V). It is possible to bypass this fuse, but do so at your own risk.
 

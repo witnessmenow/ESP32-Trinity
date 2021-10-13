@@ -59,9 +59,9 @@
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;      // Total number of panels chained one to another
 
 // -------------------------------------
 // -------   Other Config Config   ------
@@ -75,7 +75,7 @@
 #define MAX_FPS      100 // Maximum redraw rate, frames/second
 #define DISPLAY_FPS 50
 
-#define SHOW_FPS
+//#define SHOW_FPS
 
 #define PIXEL_COUNT 1500
 
@@ -109,7 +109,7 @@ struct pixel {
 
 
 pixel pixels[PIXEL_COUNT];
-uint16_t screenPixels[PANEL_RES_X][PANEL_RES_Y];
+uint16_t screenPixels[panelResX][panelResY];
 
 
 // Second Core Stuff
@@ -125,6 +125,8 @@ void processSand(void *param) {
   //Default ESP32 i2c pins (21,22)
   Wire.begin(SDA, SCL, 400000);
   mpu6050.begin();
+
+  Serial.print("Starting sand processor");
 
 
   while (true) {
@@ -170,9 +172,11 @@ void processSand(void *param) {
         }
         newX = (float)pixels[p].x + newDx;
         newY = (float)pixels[p].y + newDy;
-        if (newX > PANEL_RES_X - 1) newX = PANEL_RES_X - 1;
+        if (newX > panelResX - 1) newX = panelResX - 1;
         if (newX < 0) newX = 0;
-        if (newY > PANEL_RES_Y - 1) newY = PANEL_RES_Y - 1;
+        if (newY > panelResY - 1){
+          newY = panelResY - 1;
+        }
         if (newY < 0) newY = 0;
         uint8_t x = (uint8_t)newX;
         uint8_t y = (uint8_t)newY;
@@ -215,24 +219,13 @@ void processSand(void *param) {
   }
 }
 
-bool changeClkPhase = false;
+bool changeClkPhase = true;
 bool changeDriver = false;
-bool reconfigDisplay = false;
-
-void gotTouch8(){
- changeClkPhase = true;
- reconfigDisplay = true;
-}
-
-void gotTouch9(){
- changeDriver = true;
- reconfigDisplay = true;
-}
 
 void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
+    panelResX,   // module width
+    panelResY,   // module height
     PANEL_CHAIN    // Chain length
   );
 
@@ -261,17 +254,14 @@ void setup() {
   Serial.begin(115200); // I only enable this for debug
   displayReconfig();
 
-  touchAttachInterrupt(T8, gotTouch8, TOUCH_THRESHOLD);
-  touchAttachInterrupt(T9, gotTouch9, TOUCH_THRESHOLD);
-
-  for (uint8_t y = 0; y < MATRIX_HEIGHT; y++) {
-    for (uint8_t x = 0; x < MATRIX_WIDTH; x++) {
+  for (uint8_t y = 0; y < panelResY; y++) {
+    for (uint8_t x = 0; x < panelResX; x++) {
       screenPixels[x][y] = 65535;
     }
   }
 
-  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
-    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
+  for (uint8_t z = 6; z < panelResX; z += 16) {
+    for (uint8_t q = 6; q < panelResY; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           screenPixels[x + z][y + q] = 60000;
@@ -304,8 +294,8 @@ void setup() {
 
 
     pixels[p] = pixel{
-      random(0, PANEL_RES_X),
-      random(0, PANEL_RES_Y),
+      random(0, panelResX),
+      random(0, panelResY),
       0,
       0,
       (float)random(90 , 100) / 100,
@@ -331,7 +321,7 @@ void setup() {
   dma_display->fillScreen(0x0);
   dma_display->setTextColor(0xFFFF);
   dma_display->setTextSize(1);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 
   delay(1000);
 
@@ -346,15 +336,9 @@ uint32_t loopPreviousT;
 
 void loop() {
 
-  if(reconfigDisplay){
-    reconfigDisplay = false;
-    displayReconfig();
-  }
-
   uint32_t t;
   while (((t = micros()) - loopPreviousT) < (1000000L / DISPLAY_FPS));
   loopPreviousT = t;
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(0x0);
   //  mpu6050.update();
   //
@@ -367,8 +351,8 @@ void loop() {
     dma_display->drawPixelRGB888(pixels[p].ix, pixels[p].iy, pixels[p].r, pixels[p].g, pixels[p].b);
   }
 
-  for (uint8_t z = 6; z < PANEL_RES_X; z += 16) {
-    for (uint8_t q = 6; q < PANEL_RES_Y; q += 16) {
+  for (uint8_t z = 6; z < panelResX; z += 16) {
+    for (uint8_t q = 6; q < panelResY; q += 16) {
       for (uint8_t y = 0; y < 6; y++) {
         for (uint8_t x = 0; x < 6; x++) {
           dma_display->drawPixelRGB888(x + z, y + q, 0xFF, 0xFF, 0x00);
@@ -383,5 +367,5 @@ void loop() {
   dma_display->setCursor(1, 1);
   dma_display->print("FPS:");  dma_display->print(fps.getStringFPS());
 #endif
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }

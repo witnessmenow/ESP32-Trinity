@@ -40,7 +40,10 @@
 #include <WiFiManager.h>
 // Captive portal for configuring the WiFi
 
-// Can be installed from the library manager (Search for "WifiManager", install the Alhpa version)
+// NOTE!!!!
+// At time of writing this is broken with ESP32 core 2.0, so either use an older Arduino core or use
+// the ESP32 branch of WifiManager from Github
+// If installing from the library manager (Search for "WifiManager", install the Alhpa version)
 // https://github.com/tzapu/WiFiManager
 
 #include <ESP_DoubleResetDetector.h>
@@ -181,7 +184,6 @@ void animationHandler()
   // Not clearing the display and redrawing it when you
   // dont need to improves how the refresh rate appears
   if (!finishedAnimating) {
-    dma_display->flipDMABuffer();
     dma_display->fillScreen(myBLACK);
     if (displayIntro) {
       finishedAnimating = tetris.drawText(1, 21);
@@ -207,7 +209,7 @@ void animationHandler()
         finishedAnimating = tetris.drawNumbers(2, 26, showColon);
       }
     }
-    dma_display->showDMABuffer();
+    dma_display->flipDMABuffer();
   }
 
 }

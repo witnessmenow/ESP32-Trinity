@@ -92,7 +92,7 @@ void setup() {
   displaySetup();
 
   // Can be set between 0 and 255
-  // WARNING: The birghter it is, the more power it uses
+  // WARNING: The brighter it is, the more power it uses
   // Could take up to 3A on full brightness
   dma_display->setBrightness8(100); //0-255
 

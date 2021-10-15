@@ -57,7 +57,7 @@
 
 #include <TetrisMatrixDraw.h>
 // This library draws out characters using a tetris block
-// amimation
+// animation
 // Can be installed from the library manager
 // https://github.com/toblum/TetrisAnimation
 
@@ -75,7 +75,7 @@
 // Dependency Libraries - each one of these will need to be installed.
 // ----------------------------
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
@@ -122,7 +122,7 @@ const int PIN_LED       = 2;
 #define TETRIS_CONFIG_JSON "/tetris_config.json"
 
 // Number of seconds after reset during which a
-// subseqent reset will be considered a double reset.
+// subsequent reset will be considered a double reset.
 #define DRD_TIMEOUT 10
 
 // RTC Memory Address for the DoubleResetDetector to use

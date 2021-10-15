@@ -34,7 +34,7 @@ void setup() {
   Serial.begin(115200);
 
   HUB75_I2S_CFG mxconfig;
-  mxconfig.mx_height = PANEL_HEIGHT;      // we have 64 pix heigh panels
+  mxconfig.mx_height = PANEL_HEIGHT;      // we have 64 pix height panels
   mxconfig.gpio.e = 18;
   
   // May or may not be needed depending on your matrix

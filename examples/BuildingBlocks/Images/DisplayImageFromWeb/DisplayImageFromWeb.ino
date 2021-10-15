@@ -1,11 +1,11 @@
 /*******************************************************************
-    Display an image loaded from the internt on a matrix display
+    Display an image loaded from the internet on a matrix display
 
     This is a more generic version of the functionality worked on
     for the Spotify library.
 
     This loads an image from imgur. It uses https, but it could be adapted to
-    http by just using a WiFiClient, rahter than WiFiClientSecure
+    http by just using a WiFiClient, rather than WiFiClientSecure
 
     The image loaded is a 64 x 64 image, but it should display on smaller
     matrix (just be cut off).

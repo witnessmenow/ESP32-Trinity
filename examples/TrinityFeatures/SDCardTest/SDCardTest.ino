@@ -3,7 +3,7 @@
 
     Based on the basic SD_Test example in the ESP32 library.
 
-    The deafult SPI pins are being used by the matrix library
+    The default SPI pins are being used by the matrix library
     so we need to use custom ones.
 
     SCLK 33

@@ -63,9 +63,9 @@ const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel
 const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
 const int panel_chain = 1;      // Total number of panels chained one to another
 
-// -------------------------------------
-// -------   Other Config Config   ------
-// -------------------------------------
+// -------------------------------
+// -------   Other Config   ------
+// -------------------------------
 
 #define CAP_BUTTONS 1 // Comment this out if not using a Trinity
 #define TOUCH_THRESHOLD 40 // Bigger Threshold == more sensitive (resting is about 48)

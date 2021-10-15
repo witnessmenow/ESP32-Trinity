@@ -38,7 +38,7 @@
 
 #include <TetrisMatrixDraw.h>
 // This library draws out characters using a tetris block
-// amimation
+// animation
 // Can be installed from the library manager
 // https://github.com/toblum/TetrisAnimation
 
@@ -51,7 +51,7 @@
 // Dependency Libraries - each one of these will need to be installed.
 // ----------------------------
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 

@@ -1,5 +1,5 @@
 /*******************************************************************
-    An Example showing scolling text
+    An Example showing scrolling text
 
     Parts Used:
       ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity

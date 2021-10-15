@@ -48,7 +48,7 @@ const int panel_chain = 1;      // Total number of panels chained one to another
 // (one long display). The I2S Matrix library supports different display configurations
 // Details here: 
 
-// See the setup method for more display config options
+// See the "displaySetup" method for more display config options
 
 //------------------------------------------------------------------------------------------------------------------
 

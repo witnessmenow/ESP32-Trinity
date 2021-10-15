@@ -118,7 +118,7 @@ For more details check out the [SDCardTest Example](/examples/TrinityFeatures/SD
 
 ### My colours are mixed up/not right
 
-Well thats not technically a question, but I get you!
+Well that's not technically a question, but I get you!
 
 Some matrix panels have some of the colour channels swapped around for some reason. The most common one I've seen is Blue and Green mixed, which seems to lead to a lot of purple images.
 
@@ -140,7 +140,7 @@ I have not tried, but the I2S Matrix library doesn't seem to support it by defau
 
 "Trinity" has a lot of significance for Irish people.
 
-The Trinity Knots symbol is something from Irish/Celtic history and is instantly recognizable as a symbol of Ireland. There are examples of artifacts dating back to the 8th century with Trinity Knots on them.
+The Trinity Knots symbol is something from Irish/Celtic history and is instantly recognizable as a symbol of Ireland. There are examples of artefacts dating back to the 8th century with Trinity Knots on them.
 
 The Ireland national symbol is the shamrock, one of the main significances of the shamrock is a way to represent the Christian Holy Trinity. It's said that St Patrick used a shamrock to represent the Holy Trinity when he came to bring Christianity to Ireland.
 

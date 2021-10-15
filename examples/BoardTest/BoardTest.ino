@@ -1,7 +1,7 @@
 /*******************************************************************
     The test sketch that was ran on every Trinity during testing.
 
-    It is a cobination of some of the other examples:
+    It is a combination of some of the other examples:
       - Hello World
       - Colour Test (just the white part)
       - Falling Sand

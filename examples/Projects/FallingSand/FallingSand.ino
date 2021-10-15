@@ -226,7 +226,7 @@ void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
     panelResX,   // module width
     panelResY,   // module height
-    PANEL_CHAIN    // Chain length
+    panel_chain  // Chain length
   );
 
   mxconfig.double_buff = true;

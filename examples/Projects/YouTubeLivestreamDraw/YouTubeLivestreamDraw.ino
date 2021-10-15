@@ -87,9 +87,9 @@ char password[] = "password"; // your network password
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 32;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
 
@@ -128,9 +128,9 @@ char lastMessageReceived[YOUTUBE_MSG_CHAR_LENGTH];
 void setup() {
 
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.gpio.e = 18;
@@ -214,13 +214,13 @@ void drawChatPixel(char *msg) {
     // Token should now == x
     if (token != NULL) {
       x = atoi(token);
-      if (x >= PANEL_RES_X || x < 0)
+      if (x >= panelResX || x < 0)
         return;
       token = strtok(NULL, " ");
       // Token should now == y
       if (token != NULL) {
         y = atoi(token);
-        if (y >= PANEL_RES_Y || y < 0)
+        if (y >= panelResY || y < 0)
           return;
       } else {
         //Not Valid

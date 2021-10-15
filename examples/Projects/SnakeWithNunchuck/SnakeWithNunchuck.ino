@@ -2,16 +2,12 @@
     WIP: Snake game using a 64x64 RGB LED Matrix,
     an ESP32 and a Wii Nunchuck.
 
-    Parts:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
- *  * = Affilate
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
-
 
     Written by Brian Lough
     YouTube: https://www.youtube.com/brianlough
@@ -35,31 +31,35 @@
 // Can be installed from the library manager
 // https://github.com/dmadison/NintendoExtensionCtrl
 
-#include <ESP32-RGB64x32MatrixPanel-I2S-DMA.h>
+#include <ESP32-HUB75-MatrixPanel-I2S-DMA.h>
 // This is the library for interfacing with the display
 
-// Can be installed from the library manager (Search for "ESP32 64x32 LED MATRIX")
-// https://github.com/mrfaptastic/ESP32-RGB64x32MatrixPanel-I2S-DMA
+// Can be installed from the library manager (Search for "ESP32 MATRIX DMA")
+// https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA
 
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-//--------------------------------
-//Game Config Options:
-//--------------------------------
+// --------------------------------
+// -------   Matrix Config   ------
+// --------------------------------
 
-//Display settings
-#define SCREEN_X 64
-#define SCREEN_Y 64
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
+
+//--------------------------------
+// Game Config Options:
+//--------------------------------
 
 #define WORLD_TO_PIXEL 1
 
 #define WORLD_X 64
 #define WORLD_Y 64
 
-//Snake Settings
+// Snake Settings
 #define SNAKE_START_LENGTH 10
 
 // Fat Snake - Woohooo
@@ -68,35 +68,31 @@
 //#define WORLD_X 21
 //#define WORLD_Y 21
 
-//Snake Settings
+// Snake Settings
 //#define SNAKE_START_LENGTH 3
 
-//Game Settings
+// Game Settings
 #define DELAY_BETWEEN_FRAMES 300 // smaller == faster snake
 #define BOOSTED_DELAY_BETWEEN_FRAMES 25
-//--------------------------------
 
 //--------------------------------
-//Pin Definitions:
-//--------------------------------
-
+// Pin Definitions:
 //--------------------------------
 
 unsigned long delayBetweenFrames = DELAY_BETWEEN_FRAMES;
 
 Nunchuk nchuk;   // Controller on bus #1
 
-RGB64x32MatrixPanel_I2S_DMA dma_display;
+MatrixPanel_I2S_DMA *dma_display = nullptr;
 
-
-uint16_t myRED = dma_display.color565(255, 0, 0);
-uint16_t myGREEN = dma_display.color565(0, 255, 0);
-uint16_t myBLUE = dma_display.color565(0, 0, 255);
-uint16_t myWHITE = dma_display.color565(255, 255, 255);
-uint16_t myYELLOW = dma_display.color565(255, 255, 0);
-uint16_t myCYAN = dma_display.color565(0, 255, 255);
-uint16_t myMAGENTA = dma_display.color565(255, 0, 255);
-uint16_t myBLACK = dma_display.color565(0, 0, 0);
+uint16_t myRED = dma_display->color565(255, 0, 0);
+uint16_t myGREEN = dma_display->color565(0, 255, 0);
+uint16_t myBLUE = dma_display->color565(0, 0, 255);
+uint16_t myWHITE = dma_display->color565(255, 255, 255);
+uint16_t myYELLOW = dma_display->color565(255, 255, 0);
+uint16_t myCYAN = dma_display->color565(0, 255, 255);
+uint16_t myMAGENTA = dma_display->color565(255, 0, 255);
+uint16_t myBLACK = dma_display->color565(0, 0, 0);
 
 uint16_t snakeBodyColour = myMAGENTA;
 uint16_t snakeHeadColour = myGREEN;
@@ -150,26 +146,50 @@ void initSnake(int snakeLength, int x, int y) {
   player->head = current;
 }
 
+void displaySetup() {
+  HUB75_I2S_CFG mxconfig(
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
+  );
+
+  // If you are using a 64x64 matrix you need to pass a value for the E pin
+  // The trinity connects GPIO 18 to E.
+  // This can be commented out for any smaller displays (but should work fine with it)
+  mxconfig.gpio.e = 18;
+
+  // May or may not be needed depending on your matrix
+  // Example of what needing it looks like:
+  // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/134#issuecomment-866367216
+  mxconfig.clkphase = false;
+
+  // Some matrix panels use different ICs for driving them and some of them have strange quirks.
+  // If the display is not working right, try this.
+  //mxconfig.driver = HUB75_I2S_CFG::FM6126A;
+
+  dma_display = new MatrixPanel_I2S_DMA(mxconfig);
+  dma_display->begin();
+}
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
-  dma_display.begin();
 
-
+  displaySetup();
+  dma_display->fillScreen(myBLACK);
 
   nchuk.begin();
 
   while (!nchuk.connect()) {
     Serial.println("Nunchuk on bus #1 not detected!");
-    dma_display.setCursor(5, 0);
-    dma_display.setTextColor(myBLUE);
-    dma_display.println("No");
-    dma_display.setCursor(5, 9);
-    dma_display.setTextColor(myRED);
-    dma_display.println("Nunchuck");
-    dma_display.setCursor(5, 18);
-    dma_display.setTextColor(myGREEN);
-    dma_display.println("detected!");
+    dma_display->setCursor(5, 0);
+    dma_display->setTextColor(myBLUE);
+    dma_display->println("No");
+    dma_display->setCursor(5, 9);
+    dma_display->setTextColor(myRED);
+    dma_display->println("Nunchuck");
+    dma_display->setCursor(5, 18);
+    dma_display->setTextColor(myGREEN);
+    dma_display->println("detected!");
     delay(1000);
   }
 
@@ -369,11 +389,11 @@ void processApple() {
 
 void drawBodyPart(int x, int y, uint16_t colour) {
   int realX = (x * WORLD_TO_PIXEL);
-  int realy = (y * WORLD_TO_PIXEL);
+  int realY = (y * WORLD_TO_PIXEL);
   if (WORLD_TO_PIXEL > 1) {
-    dma_display.drawRect(realX, realy, 3, 3, colour);
+    dma_display->drawRect(realX, realY, 3, 3, colour);
   } else {
-    dma_display.drawPixel(realX, realy, colour);
+    dma_display->drawPixel(realX, realY, colour);
   }
 }
 
@@ -404,7 +424,7 @@ void loop() {
       processApple();
     }
     //  display.clearDisplay();
-    dma_display.fillScreen(myBLACK);
+    dma_display->fillScreen(myBLACK);
 
     drawSnake();
     drawApple();

@@ -331,8 +331,8 @@ void setup() {
   //touchAttachInterrupt(T8, gotTouch8, TOUCH_THRESHOLD);
   //touchAttachInterrupt(T9, gotTouch9, TOUCH_THRESHOLD);
 
-  for (uint8_t y = 0; y < MATRIX_HEIGHT; y++) {
-    for (uint8_t x = 0; x < MATRIX_WIDTH; x++) {
+  for (uint8_t y = 0; y < panelResY; y++) {
+    for (uint8_t x = 0; x < panelResX; x++) {
       screenPixels[x][y] = 65535;
     }
   }

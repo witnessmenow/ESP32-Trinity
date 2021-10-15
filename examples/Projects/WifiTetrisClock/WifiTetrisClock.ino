@@ -122,7 +122,6 @@ void animationHandler()
   // Not clearing the display and redrawing it when you
   // dont need to improves how the refresh rate appears
   if (!finishedAnimating) {
-    dma_display->flipDMABuffer();
     dma_display->fillScreen(myBLACK);
     if (displayIntro) {
       finishedAnimating = tetris.drawText(1, 21);
@@ -148,14 +147,13 @@ void animationHandler()
         finishedAnimating = tetris.drawNumbers(2, 26, showColon);
       }
     }
-    dma_display->showDMABuffer();
+    dma_display->flipDMABuffer();
   }
 
 }
 
 void drawIntro(int x = 0, int y = 0)
 {
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(myBLACK);
   tetris.drawChar("P", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
@@ -167,12 +165,11 @@ void drawIntro(int x = 0, int y = 0)
   tetris.drawChar(" ", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("b", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("y", x + 47, y, tetris.tetrisGREEN);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 void drawConnecting(int x = 0, int y = 0)
 {
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(myBLACK);
   tetris.drawChar("C", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
@@ -184,7 +181,7 @@ void drawConnecting(int x = 0, int y = 0)
   tetris.drawChar("i", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("n", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("g", x + 47, y, tetris.tetrisGREEN);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 void setup() {
@@ -323,7 +320,7 @@ void handleColonAfterAnimation() {
   // (this could be better!)
   int y = 26 - (TETRIS_Y_DROP_DEFAULT * tetris.scale);
   tetris.drawColon(x, y, colour);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 

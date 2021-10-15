@@ -214,7 +214,6 @@ void animationHandler()
 
 void drawIntro(int x = 0, int y = 0)
 {
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(myBLACK);
   tetris.drawChar("P", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
@@ -226,12 +225,11 @@ void drawIntro(int x = 0, int y = 0)
   tetris.drawChar(" ", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("b", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("y", x + 47, y, tetris.tetrisGREEN);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 void drawConnecting(int x = 0, int y = 0)
 {
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(myBLACK);
   tetris.drawChar("C", x, y, tetris.tetrisCYAN);
   tetris.drawChar("o", x + 5, y, tetris.tetrisMAGENTA);
@@ -243,7 +241,7 @@ void drawConnecting(int x = 0, int y = 0)
   tetris.drawChar("i", x + 37, y, tetris.tetrisMAGENTA);
   tetris.drawChar("n", x + 42, y, tetris.tetrisYELLOW);
   tetris.drawChar("g", x + 47, y, tetris.tetrisGREEN);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 //callback notifying us of the need to save config
@@ -254,7 +252,6 @@ void saveConfigCallback () {
 
 void configModeCallback (WiFiManager *myWiFiManager) {
   Serial.println("Entered Conf Mode");
-  dma_display->flipDMABuffer();
   dma_display->fillScreen(myBLACK);
   dma_display->setTextSize(1);     // size 1 == 8 pixels high
   dma_display->setTextWrap(false);
@@ -267,7 +264,7 @@ void configModeCallback (WiFiManager *myWiFiManager) {
   dma_display->setCursor(0, 8);
   dma_display->print(WiFi.softAPIP());
 
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 void saveConfigFile() {
@@ -397,6 +394,7 @@ void setup() {
   } else {
     dma_display->print("Conf Mode");
   }
+  dma_display->flipDMABuffer();
 
 
 
@@ -522,7 +520,7 @@ void setup() {
   Serial.println();
   Serial.println("UTC:             " + UTC.dateTime());
 
-  myTZ.setLocation(F(MYTIMEZONE));
+  myTZ.setLocation(timeZone);
   Serial.print(F("Time in your set timezone:         "));
   Serial.println(myTZ.dateTime());
 
@@ -601,7 +599,7 @@ void handleColonAfterAnimation() {
   // (this could be better!)
   int y = 26 - (TETRIS_Y_DROP_DEFAULT * tetris.scale);
   tetris.drawColon(x, y, colour);
-  dma_display->showDMABuffer();
+  dma_display->flipDMABuffer();
 }
 
 

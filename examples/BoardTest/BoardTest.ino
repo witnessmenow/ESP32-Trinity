@@ -61,25 +61,25 @@ bool changeDriver = true;
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // See the "displaySetup" method for more display config options
 
-// -------------------------------------
-// -------   Other Config Config   ------
-// -------------------------------------
+// -------------------------------
+// -------   Other Config   ------
+// -------------------------------
 
-#define TOUCH_THRESHOLD 38 // Bigger Threshold == more sensitive (resting is about 48)
+#define TOUCH_THRESHOLD 38  // Bigger Threshold == more sensitive (resting is about 48)
 
-#define SHOW_TIME 10
+#define SHOW_TIME   10
 
-#define MAX_FPS      100 // Maximum redraw rate, frames/second
+#define MAX_FPS     100  // Maximum redraw rate, frames/second
 #define DISPLAY_FPS 50
 
 //#define SHOW_FPS
@@ -249,9 +249,9 @@ bool reconfigDisplay = false;
 
 void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.double_buff = true;

@@ -64,21 +64,21 @@
 
 #include "WebRequest.h"
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // See the "displaySetup" method for more display config options
 
 //------------------------------------------------------------------------------------------------------------------
 
-// -------------------------------------
+// ---------------------------------------------------
 //------- Other Config - Replace the following! ------
-// -------------------------------------
+// ---------------------------------------------------
 
 char ssid[] = "SSID";         // your network SSID (name)
 char password[] = "password"; // your network password
@@ -111,9 +111,9 @@ void JPEGDraw(JPEGDRAW *pDraw)
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin

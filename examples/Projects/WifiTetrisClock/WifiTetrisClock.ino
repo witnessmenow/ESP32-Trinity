@@ -5,10 +5,7 @@
     For use with my I2S Matrix Shield.
 
     Parts Used:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
-      = Affilate
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
@@ -68,17 +65,17 @@ char password[] = "password"; // your network key
 // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 #define MYTIMEZONE "Europe/Dublin"
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
 const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
 const int panelResY = 32;   // Number of pixels tall of each INDIVIDUAL panel module.
 const int panel_chain = 1;  // Total number of panels chained one to another.
 
-// -------------------------------------
+// -------------------------------
 // -------   Clock Config   ------
-// -------------------------------------
+// -------------------------------
 
 // Sets whether the clock should be 12 hour format or not.
 bool twelveHourFormat = true;

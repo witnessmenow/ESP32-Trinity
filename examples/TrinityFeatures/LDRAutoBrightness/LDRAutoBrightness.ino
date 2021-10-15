@@ -1,5 +1,5 @@
 // An example of changing the brightness of the panel
-// based on the analog reading 
+// based on the analog reading
 
 // The idea would be to connect it to an LDR
 // https://create.arduino.cc/projecthub/SBR/working-with-light-dependent-resistor-ldr-1ded4f
@@ -36,7 +36,7 @@ void setup() {
   HUB75_I2S_CFG mxconfig;
   mxconfig.mx_height = PANEL_HEIGHT;      // we have 64 pix height panels
   mxconfig.gpio.e = 18;
-  
+
   // May or may not be needed depending on your matrix
   //mxconfig.clkphase = false;
 

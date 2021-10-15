@@ -1,5 +1,4 @@
 /*******************************************************************
- 
     A simple example showing different size fonts in different colours
 
     Parts Used:
@@ -8,13 +7,12 @@
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
-    
+
     Written by Brian Lough
       YouTube: https://www.youtube.com/brianlough
       Tindie: https://www.tindie.com/stores/brianlough/
       Twitter: https://twitter.com/witnessmenow
  *******************************************************************/
-
 
 // ----------------------------
 // Additional Libraries - each one of these will need to be installed.
@@ -35,18 +33,18 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module. 
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // Note about chaining panels:
 // By default all matrix libraries treat the panels as been connected horizontally
 // (one long display). The I2S Matrix library supports different display configurations
-// Details here: 
+// Details here:
 
 // See the "displaySetup" method for more display config options
 
@@ -62,16 +60,16 @@ uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // This is how you enable the double buffer.
   // Double buffer can help with animation heavy projects
   // It's not needed for something simple like this, but some
   // of the other examples make use of it.
-  
+
   //mxconfig.double_buff = true;
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin
@@ -99,11 +97,11 @@ void setup() {
   Serial.begin(115200);
 
   displaySetup();
-  
+
   dma_display->clearScreen();
   dma_display->fillScreen(myBLACK);
   dma_display->setTextWrap(false);
-  
+
   dma_display->setTextSize(1);     // size 1 == 8 pixels high
   dma_display->setTextColor(myBLUE);
   dma_display->setCursor(0, 0);

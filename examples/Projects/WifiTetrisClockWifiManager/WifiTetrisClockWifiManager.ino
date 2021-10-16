@@ -42,7 +42,7 @@
 
 // NOTE!!!!
 // At time of writing this is broken with ESP32 core 2.0, so either use an older Arduino core or use
-// the ESP32 branch of WifiManager from Github
+// the ESP32-S2 branch of WifiManager from Github
 // If installing from the library manager (Search for "WifiManager", install the Alhpa version)
 // https://github.com/tzapu/WiFiManager
 

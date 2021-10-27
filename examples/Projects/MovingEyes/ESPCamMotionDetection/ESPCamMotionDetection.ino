@@ -3,6 +3,10 @@
 // This code is original from Makers Mashup (Links below), modified by me to fix up some things and
 // remove the stepper code stuff and just print to serial instead.
 
+// Serial output is a number between 0 and 9.
+// from the camera's perspective (so from behind the camera)
+// 0 is the most left, 9 is the most right (I think :) )
+
 // Below is his header as it was 
 // NOTE: the note about taskShedule and TinySteppter do not apply anymore.
 

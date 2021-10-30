@@ -260,7 +260,7 @@ void configModeCallback (WiFiManager *myWiFiManager) {
   dma_display->setTextColor(tetris.tetrisBLUE);
   dma_display->setCursor(0, 0);
   dma_display->print(myWiFiManager->getConfigPortalSSID());
-  
+
   dma_display->setTextWrap(true);
   dma_display->setTextColor(tetris.tetrisRED);
   dma_display->setCursor(0, 8);
@@ -482,18 +482,19 @@ void setup() {
     }
   }
 
-  strncpy(timeZone, custom_time_zone.getValue(), sizeof(timeZone));
-  matrixClk = (strncmp(custom_clk.getValue(), "T", 1) == 0);
-  matrixDriver = (strncmp(custom_driver.getValue(), "T", 1) == 0);
-  matrixIs64 = (strncmp(custom_is64.getValue(), "T", 1) == 0);
-
-  twelveHourFormat = !(strncmp(custom_time_24h.getValue(), "T", 1) == 0);
-  forceRefresh = (strncmp(custom_time_force.getValue(), "T", 1) == 0);
-  animationDelay = atoi(custom_time_delay.getValue());
-
   //save the custom parameters to FS
   if (shouldSaveConfig)
   {
+
+    strncpy(timeZone, custom_time_zone.getValue(), sizeof(timeZone));
+    matrixClk = (strncmp(custom_clk.getValue(), "T", 1) == 0);
+    matrixDriver = (strncmp(custom_driver.getValue(), "T", 1) == 0);
+    matrixIs64 = (strncmp(custom_is64.getValue(), "T", 1) == 0);
+
+    twelveHourFormat = !(strncmp(custom_time_24h.getValue(), "T", 1) == 0);
+    forceRefresh = (strncmp(custom_time_force.getValue(), "T", 1) == 0);
+    animationDelay = atoi(custom_time_delay.getValue());
+
     saveConfigFile();
     drd->stop();
     ESP.restart();

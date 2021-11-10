@@ -54,7 +54,7 @@ You will need to have the ESP32 setup for your Arduino IDE, [instructions can be
 
 You can then select basically any ESP32 board in the boards menu. (I usually use "Wemos D1 Mini ESP32", but it doesn't really matter)
 
-### Library despondencies
+### Library dependencies
 
 The following libraries will need to be installed for the Trinity to work.
 

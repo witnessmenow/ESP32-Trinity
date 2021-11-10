@@ -8,7 +8,7 @@ You should also check out the [examples that come with the I2S Matrix library](h
 
 ### Basics
 
-In this section you will find some simple sketches to get you up and running on your Trinity. These are a great place to get started, as I alway would recomend getting something simple running on any hardware to make sure your setup works!
+In this section you will find some simple sketches to get you up and running on your Trinity. These are a great place to get started, as I would always recommend getting something simple running on any hardware to make sure your setup works!
 
 - [Hello World](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Basics/HelloWorld) - A simple example showing different size fonts in different colours
 - [ColourTest](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Basics/ColourTest) - A simple sketch that just cycles through colours (WARNING - can use a lot of power!)
@@ -23,27 +23,27 @@ This section shows examples on how to do some things that could be useful to use
   - [ScrollingText](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Text/ScrollingText) - An example to show you how to scroll text.
 - Images
   - [DisplayImageFromWeb](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Images/DisplayImageFromWeb) - Downloads a JPG from a URL (imgur in this case), save it to SPIFFS and displays it to the Matrix
-  - [DisplayGIF](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Images/DisplayGIF) - Displays severtal GIFs on the matrix. Check the top of the file for more info.
+  - [DisplayGIF](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Images/DisplayGIF) - Displays several GIFs on the matrix. Check the top of the file for more info.
 
 ### Trinity Features
 
-This section is show how to use some of the additional features of the Trinity
+This section shows how to use some of the additional features of the Trinity
 
 - [LDRAutoBrightness](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/TrinityFeatures/LDRAutoBrightness) - An example of using the LDR to automatically adjust the brightness of the display **Additional Requirements:** Included LDR needs to be soldered
-- [SDCardTest](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/TrinityFeatures/SDCardTest) - An example of using an SD Card with your Trinity. Could be adapted to work with any SPI device. The matrix uses some of the deafult SPI pins so we had to get creative. **Additional Requirements:** An SD/Micro SD module
+- [SDCardTest](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/TrinityFeatures/SDCardTest) - An example of using an SD Card with your Trinity. Could be adapted to work with any SPI device. The matrix uses some of the default SPI pins so we had to get creative. **Additional Requirements:** An SD/Micro SD module
 - [TouchPointTest](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/TrinityFeatures/TouchPointTest) - A basic example of using the built-in Touch pads of the Trinity.
 
 ### Projects
 
-This is a collection of some of the projects I've written for the Trinity that you should be able to just use to get a full working project going on your Trinity in just a few minutes! Also feel free to build on top of these or change them for you needs.
+This is a collection of some of the projects I've written for the Trinity that you should be able to just use to get a full working project going on your Trinity in just a few minutes! Also feel free to build on top of these or change them for your needs.
 
-_Note:_ This is not a full list of projects I've made as some will have their own repos. Please check the Project Section for a full list of my projects and user contributed ones.
+_Note:_ This is not a full list of projects I've made as some will have their own repos. Please check the Project Section for a full list of my projects and user-contributed ones.
 
 - [FallingSand](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/FallingSand):
   A fun project that emulates sand falling on the Matrix using an accelerometer module. This was originally created by [Tetra3DPrint](https://twitter.com/tetra3dprint) and ported to the I2S matrix library by me.
   **Additional Requirements:** GY521 Accelermoter Module
 - [SnakeWithNunchuck](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/SnakeWithNunchuck)
-  I'm tired of these monkey fighting snakes on this Monday to Friday Matrix! A simple version of the clasic game controlled by a Nintendo Wii Nunchuck. **Additional Requirements:** Wii Nunchuck and an adaptor
+  I'm tired of these monkey fighting snakes on this Monday to Friday Matrix! A simple version of the classic game controlled by a Nintendo Wii Nunchuck. **Additional Requirements:** Wii Nunchuck and an adaptor
 - [TetrisWithNunchuck](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/TetrisWithNunchuck)
   Please don't sue me EA. Tetris on your matrix controlled by a Wii Nunchuck. **Additional Requirements:** Wii Nunchuck and an adaptor
 - [WifiTetrisClock](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/WifiTetrisClock)
@@ -57,7 +57,7 @@ _Note:_ This is not a full list of projects I've made as some will have their ow
 
 ### But I still haven't found what I'm looking for
 
-If you feel like there is something missing please or you just need some addtional help, feel free to:
+If you feel like there is something missing please or you just need some additional help, feel free to:
 
 - [Ask on my Discord](https://discord.gg/2enC6GW) - This will be the fastest as other helpful makers can jump in too!
 - Raise a Github Issue here

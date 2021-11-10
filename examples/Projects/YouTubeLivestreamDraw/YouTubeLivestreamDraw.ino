@@ -6,16 +6,12 @@
 
     For use with my I2S Matrix Shield.
 
-    Parts:
-    ESP32 Mini Kit (ESP32 D1 Mini) * - https://s.click.aliexpress.com/e/_AYPehO (pick the CP2104 Drive version)
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
- *  * = Affiliate
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
-
 
     Written by Brian Lough
     YouTube: https://www.youtube.com/brianlough
@@ -64,7 +60,7 @@
 char ssid[] = "SSID";         // your network SSID (name)
 char password[] = "password"; // your network password
 
-// You need 1 API key per roughly 2 hours of chat you plan to monitor 
+// You need 1 API key per roughly 2 hours of chat you plan to monitor
 // So you can pass in just one:
 
 #define YT_API_TOKEN "AAAAAAAAAABBBBBBBBBBBCCCCCCCCCCCDDDDDDDDDDD"
@@ -83,13 +79,13 @@ char password[] = "password"; // your network password
 
 //------- ---------------------- ------
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 64     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 32;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 MatrixPanel_I2S_DMA *dma_display = nullptr;
 
@@ -128,9 +124,9 @@ char lastMessageReceived[YOUTUBE_MSG_CHAR_LENGTH];
 void setup() {
 
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.gpio.e = 18;
@@ -214,13 +210,13 @@ void drawChatPixel(char *msg) {
     // Token should now == x
     if (token != NULL) {
       x = atoi(token);
-      if (x >= PANEL_RES_X || x < 0)
+      if (x >= panelResX || x < 0)
         return;
       token = strtok(NULL, " ");
       // Token should now == y
       if (token != NULL) {
         y = atoi(token);
-        if (y >= PANEL_RES_Y || y < 0)
+        if (y >= panelResY || y < 0)
           return;
       } else {
         //Not Valid
@@ -248,7 +244,7 @@ bool processMessage(ChatMessage chatMessage, int index, int numMessages) {
         Serial.print("Received command from ");
         Serial.println(chatMessage.displayName);
         drawChatPixel((char *) chatMessage.displayMessage);
-      } 
+      }
       break;
     case yt_message_type_superChat:
     case yt_message_type_superSticker:
@@ -323,7 +319,7 @@ void loop() {
 
     if (haveLiveChatId) {
       // The processMessage Callback will be called for every message found.
-      ChatResponses responses = ytVideo.getChatMessages(processMessage, liveChatId); 
+      ChatResponses responses = ytVideo.getChatMessages(processMessage, liveChatId);
       if (!responses.error) {
         Serial.println("done");
         Serial.print("Polling interval: ");

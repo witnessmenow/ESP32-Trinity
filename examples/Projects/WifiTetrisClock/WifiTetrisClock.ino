@@ -5,10 +5,7 @@
     For use with my I2S Matrix Shield.
 
     Parts Used:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
-      = Affilate
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
@@ -38,7 +35,7 @@
 
 #include <TetrisMatrixDraw.h>
 // This library draws out characters using a tetris block
-// amimation
+// animation
 // Can be installed from the library manager
 // https://github.com/toblum/TetrisAnimation
 
@@ -51,7 +48,7 @@
 // Dependency Libraries - each one of these will need to be installed.
 // ----------------------------
 
-// Adafruit GFX library is a dependancy for the matrix Library
+// Adafruit GFX library is a dependency for the matrix Library
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
@@ -68,17 +65,17 @@ char password[] = "password"; // your network key
 // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 #define MYTIMEZONE "Europe/Dublin"
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 32     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 32;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
-// -------------------------------------
+// -------------------------------
 // -------   Clock Config   ------
-// -------------------------------------
+// -------------------------------
 
 // Sets whether the clock should be 12 hour format or not.
 bool twelveHourFormat = true;
@@ -188,9 +185,9 @@ void setup() {
   Serial.begin(115200);
 
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.double_buff = true;

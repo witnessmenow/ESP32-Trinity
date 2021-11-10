@@ -39,13 +39,13 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // See the "displaySetup" method for more display config options
 
@@ -61,9 +61,9 @@ uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin
@@ -92,11 +92,11 @@ void setup() {
   displaySetup();
 
   // Can be set between 0 and 255
-  // WARNING: The birghter it is, the more power it uses
+  // WARNING: The brighter it is, the more power it uses
   // Could take up to 3A on full brightness
   dma_display->setBrightness8(100); //0-255
 
-  
+
   dma_display->clearScreen();
   dma_display->fillScreen(myWHITE);
 

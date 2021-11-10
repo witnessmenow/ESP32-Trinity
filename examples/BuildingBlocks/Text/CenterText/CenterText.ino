@@ -1,5 +1,4 @@
 /*******************************************************************
-
     An Example to show how to center text.
 
     Parts Used:
@@ -34,13 +33,13 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // See the "displaySetup" method for more display config options
 
@@ -56,9 +55,9 @@ uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin
@@ -94,15 +93,15 @@ void setup() {
   dma_display->setTextColor(myBLUE);
 
   // Pointers to this variable will be passed into getTextBounds,
-  // they will be updated from inside the method 
+  // they will be updated from inside the method
   int16_t xOne, yOne;
   uint16_t w, h;
 
   // This method updates the variables with what width (w) and height (h)
   // the give text will have.
-   
+
   dma_display->getTextBounds("HI", 0, 0, &xOne, &yOne, &w, &h);
- 
+
   int xPosition = dma_display->width() / 2 - w / 2 + 1;
   // The 1 at the end is to combat what seems like a bug somewhere:
   // https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/issues/43

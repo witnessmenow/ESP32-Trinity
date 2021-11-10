@@ -9,7 +9,7 @@
     Written by @tetra3dprint
     Twiter: https://twitter.com/tetra3dprint
     Github: https://github.com/tetra3dprint
-    
+
  *******************************************************************/
 //------------------------------------------------------------------------------------------------------------------
 class FPS
@@ -37,11 +37,11 @@ class FPS
       FrameCount++;
       currentMillis = millis();
       passedMillis = currentMillis - startMillis;
-      if (passedMillis > oneThou) {        
+      if (passedMillis > oneThou) {
         long remainder = passedMillis - oneThou;
         startMillis = currentMillis + remainder; // already started the next 1000 millis frame
         float FPM = (float)FrameCount / (float)passedMillis;
-        FrameCount = FPM * (float)remainder; // number of frames already rendered in the next 1000 millis frame        
+        FrameCount = FPM * (float)remainder; // number of frames already rendered in the next 1000 millis frame
         FPSActual = FPM * oneThouF; // adjust the FPS to exactly 1000 millis
       }
     }

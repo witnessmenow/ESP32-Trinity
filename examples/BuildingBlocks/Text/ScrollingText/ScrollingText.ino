@@ -1,5 +1,5 @@
 /*******************************************************************
-    An Example showing scolling text
+    An Example showing scrolling text
 
     Parts Used:
       ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
@@ -13,7 +13,6 @@
       Tindie: https://www.tindie.com/stores/brianlough/
       Twitter: https://twitter.com/witnessmenow
  *******************************************************************/
-
 
 // ----------------------------
 // Additional Libraries - each one of these will need to be installed.
@@ -34,15 +33,15 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
-#define ENABLE_DOUBLE_BUFFER 1 // This is a good example to show the difference the 
+#define ENABLE_DOUBLE_BUFFER 1 // This is a good example to show the difference the
 // double buffer makes, it doesn't flash as much
 // comment this out to test without it
 
@@ -69,9 +68,9 @@ uint16_t myBLUE = dma_display->color565(0, 0, 255);
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin

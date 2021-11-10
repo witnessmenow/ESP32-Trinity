@@ -10,11 +10,9 @@
     Tindie: https://www.tindie.com/stores/brianlough/
     Twitter: https://twitter.com/witnessmenow
 
-    Parts:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From Brian's Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
+    Parts Used:
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
- *  * = Affilate
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
@@ -55,24 +53,24 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
-// -------------------------------------
-// -------   Other Config Config   ------
-// -------------------------------------
+// -------------------------------
+// -------   Other Config   ------
+// -------------------------------
 
-#define CAP_BUTTONS 1 // Comment this out if not using a Trinity
-#define TOUCH_THRESHOLD 40 // Bigger Threshold == more sensitive (resting is about 48)
+#define CAP_BUTTONS 1       // Comment this out if not using a Trinity
+#define TOUCH_THRESHOLD 40  // Bigger Threshold == more sensitive (resting is about 48)
 
-#define SHOW_TIME 10
+#define SHOW_TIME   10
 
-#define MAX_FPS      100 // Maximum redraw rate, frames/second
+#define MAX_FPS     100  // Maximum redraw rate, frames/second
 #define DISPLAY_FPS 50
 
 //#define SHOW_FPS
@@ -224,9 +222,9 @@ bool changeDriver = false;
 
 void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.double_buff = true;

@@ -3,7 +3,7 @@
 
     Based on the basic SD_Test example in the ESP32 library.
 
-    The deafult SPI pins are being used by the matrix library
+    The default SPI pins are being used by the matrix library
     so we need to use custom ones.
 
     SCLK 33
@@ -19,15 +19,11 @@
     https://github.com/witnessmenow/ESP32-i2s-Matrix-Shield/blob/master/FAQ.md#can-i-connect-a-spi-sensordevice-to-the-shield
 
     Parts Used:
-    ESP32 D1 Mini * - https://s.click.aliexpress.com/e/_dSi824B
-    ESP32 I2S Matrix Shield (From my Tindie) = https://www.tindie.com/products/brianlough/esp32-i2s-matrix-shield/
-
- *  * = Affilate
+      ESP32 Trinity - https://github.com/witnessmenow/ESP32-Trinity
 
     If you find what I do useful and would like to support me,
     please consider becoming a sponsor on Github
     https://github.com/sponsors/witnessmenow/
-
 
     Written by Brian Lough
     YouTube: https://www.youtube.com/brianlough

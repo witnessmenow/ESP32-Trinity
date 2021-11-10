@@ -2,7 +2,7 @@
     Displays gifs on a matrix display
 
     This loads the gifs from memory, this is the fastest way
-    
+
     But speeds probably isn't super important for this, there is an example with the I2S matrix
     library tha loads the gifs from SPIFFS, which is probably a better way of doing it:
     https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/AnimatedGIFPanel
@@ -58,13 +58,13 @@
 // Can be installed from the library manager
 // https://github.com/adafruit/Adafruit-GFX-Library
 
-// -------------------------------------
+// --------------------------------
 // -------   Matrix Config   ------
-// -------------------------------------
+// --------------------------------
 
-const int panelResX = 64;      // Number of pixels wide of each INDIVIDUAL panel module.
-const int panelResY = 64;     // Number of pixels tall of each INDIVIDUAL panel module.
-const int panel_chain = 1;      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 64;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // See the "displaySetup" method for more display config options
 
@@ -157,9 +157,9 @@ void GIFDraw(GIFDRAW *pDraw)
 
 void displaySetup() {
   HUB75_I2S_CFG mxconfig(
-    panelResX,   // module width
-    panelResY,   // module height
-    panel_chain    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   // If you are using a 64x64 matrix you need to pass a value for the E pin

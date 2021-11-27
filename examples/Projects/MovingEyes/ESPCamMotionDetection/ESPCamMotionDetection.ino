@@ -86,7 +86,7 @@ long viewPortToRegion(long mv[]) {
   Serial.println(region);
 
   Serial.print("[");
-  for (int i = 8; i >= 0; i--)
+  for (int i = 9; i >= 0; i--)
   {
     if (i == region) {
       Serial.print("x");

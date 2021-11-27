@@ -54,6 +54,9 @@ _Note:_ This is not a full list of projects I've made as some will have their ow
   Allow your livestream viewers chat draw on your matrix, what could go wrong? [See in action on Unexpected Makers channel](https://www.youtube.com/watch?v=qZgrMAGGyhM&t=5592s)
 - [TrafficLight](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/TrafficLight)
   A simple traffic light that changes based on time.
+- [BluetoothSpeakerSpectrumDisplay](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/Projects/BluetoothSpeakerSpectrumDisplay)
+  ESP32 as a bluetooth speaker with a Spectrum analyser display on the Matrix
+  **Additional Requirements:** Max 98357A I2S Amp Module
 
 ### But I still haven't found what I'm looking for
 

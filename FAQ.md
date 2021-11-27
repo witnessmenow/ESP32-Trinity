@@ -132,6 +132,38 @@ mxconfig.gpio.g1 = 27; // 27 is usually b1
 mxconfig.gpio.g2 = 13; // 13 is usually b2
 ```
 
+### Using one of the ESP32 DAC pins / What is the "For Bob" section?
+
+By default the I2S Matrix library uses the two ESP32 DAC pins for connecting to the display. When I was designing the Trinity "Bob" asked would it be possible to free up one of these pins, so I created a solution for this.
+
+This solution replaces pin 25 (one of the DAC pins) with pin 33, which is one of the breakout pins and one of the touch pins. If you make this change, 33 will not be usable for anything other than the display.
+
+**Please Note: It is possible to damage your board with these steps if something goes wrong so if you are unsure what you are doing, please do not do it!**
+
+1. Locate the 3 solder pads just to top tight of the Trinity symbol
+2. Cut the trace in-between the right two solder pads highlighted in the image below
+
+![Picture showing gap of the right two of the three solder pads circled](/images/instructions/ForBobToCut.jpg)
+
+3. Solder the left two of the solder pads together
+
+![Picture showing the left two of the three solder pads circled](/images/instructions/ForBobToSolder.jpg)
+
+From a hardware point of view that is all you need to do. Pin 25 is broken out just above the ESP32 module (the pins are labeled on the bottom of the board).
+
+In software you will need to add the following to your display set-up:
+
+```
+mxconfig.gpio.r1 = 33;
+```
+
+You are then free to use pin 25 for whatever you need to!
+
+To return the Trinity to the default hardware configuration:
+
+1. De-solder the left two solder pads
+2. Solder the right two solder pads.
+
 ### Does it work with the Pixel Purse?
 
 I have not tried, but the I2S Matrix library doesn't seem to support it by default, but there seems to be a trick to get it working and they have provided an example specifically for it [here.](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA/tree/master/examples/P6_32x16_1_4_ScanPanel)

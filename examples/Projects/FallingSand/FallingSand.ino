@@ -120,14 +120,15 @@ uint8_t tryAgain;
 #define THRESHOLD (float)0.02
 uint32_t        prevTime   = 0;
 
+TaskHandle_t xHandle = NULL;
+
 void processSand(void *param) {
 
   //Default ESP32 i2c pins (21,22)
   Wire.begin(SDA, SCL, 400000);
   mpu6050.begin();
 
-  Serial.print("Starting sand processor");
-
+  //Serial.print("Starting sand processor");
 
   while (true) {
     // Limit the animation frame rate to MAX_FPS.  Because the subsequent sand
@@ -226,7 +227,7 @@ void displayReconfig() {
   HUB75_I2S_CFG mxconfig(
     panelResX,   // module width
     panelResY,   // module height
-    PANEL_CHAIN    // Chain length
+    panel_chain    // Chain length
   );
 
   mxconfig.double_buff = true;
@@ -324,8 +325,7 @@ void setup() {
   dma_display->flipDMABuffer();
 
   delay(1000);
-
-  TaskHandle_t xHandle = NULL;
+  
   xTaskCreatePinnedToCore(processSand, "ProcessSand1", 5000, 0, (2 | portPRIVILEGE_BIT), &xHandle, 0);
 #ifdef SHOW_FPS
   fps.getReady();

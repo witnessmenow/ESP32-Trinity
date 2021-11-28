@@ -24,6 +24,11 @@
 
  *******************************************************************/
 
+// NOTE: As of now it is not working on ESP32 2.0.1
+// The ESP32 Exception decoder isnt either, so it makes it 
+// basically impossible to debug
+// Downgrade ESP32 core to 2.0.0 and it should work
+
 // ----------------------------
 // Standard Libraries
 // ----------------------------

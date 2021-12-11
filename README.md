@@ -6,7 +6,7 @@ Info, examples, instructions and hardware files for the ESP32 Trinity, an open s
 
 ## Help Support what I do!
 
-My main contribution to the open source community to date has been my Arduino libraries for the ESP32 and ESP8266, but I recently been trying to contribute more certified open source hardware projects, and they are a lot of work!
+My main contribution to the open source community to date has been my Arduino libraries for the ESP32 and ESP8266, but I have recently been trying to contribute more certified open source hardware projects, and they are a lot of work!
 
 [If you enjoy my work, please consider becoming a Github sponsor!](https://github.com/sponsors/witnessmenow/)
 
@@ -17,9 +17,9 @@ My main contribution to the open source community to date has been my Arduino li
 - [Unexpected Maker](https://unexpectedmaker.com/shop/esp32-trinity) (Ships from Australia)
 - [Colin Hickey](https://store.eplop.co.uk/product/esp32_trinity/) (Ships from UK)
 
-All Trinity's arrive assembled and have been fully tested.
+All Trinity's arrives assembled and have been fully tested.
 
-If you are interested in the Trinity and one of the reseller options suits better please do purchase from there, it being successful for resellers works out well for me too!
+If you are interested in the Trinity and one of the resellers options suits better please do purchase from there, it being successful for resellers works out well for me too!
 
 ## Additional Hardware Required
 

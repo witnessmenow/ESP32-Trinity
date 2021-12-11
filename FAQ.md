@@ -11,14 +11,14 @@ This section is a lie because as of the time of writing, nobody has asked any qu
 - [What pins are available to use for sensors etc](/FAQ.md#what-pins-are-available-to-use-for-sensors-etc)
 - [Can I connect a SPI sensor/device to the Trinity](/FAQ.md#device-to-the-trinity)
 - My colours are mixed up/not right
-- Does it work with the Pixel Purse?
-- Why is it called the "Trinity"?
+- Does it work with the Pixel Purse ?
+- Why is it called the "Trinity" ?
 
 ---
 
 ### Does this work with PxMatrix?
 
-No it does not, it is designed to work with the I2S-DMA matrix library
+No, it does not, it is designed to work with the I2S-DMA matrix library
 
 **Advantages of the i2s version:**
 
@@ -118,7 +118,7 @@ For more details check out the [SDCardTest Example](/examples/TrinityFeatures/SD
 
 ### My colours are mixed up/not right
 
-Well thats not technically a question, but I get you!
+Well, that's not technically a question, but I get you!
 
 Some matrix panels have some of the colour channels swapped around for some reason. The most common one I've seen is Blue and Green mixed, which seems to lead to a lot of purple images.
 
@@ -174,7 +174,7 @@ I have not tried, but the I2S Matrix library doesn't seem to support it by defau
 
 The Trinity Knots symbol is something from Irish/Celtic history and is instantly recognizable as a symbol of Ireland. There are examples of artifacts dating back to the 8th century with Trinity Knots on them.
 
-The Ireland national symbol is the shamrock, one of the main significances of the shamrock is a way to represent the Christian Holy Trinity. It's said that St Patrick used a shamrock to represent the Holy Trinity when he came to bring Christianity to Ireland.
+The Ireland national symbol is the shamrock, one of the main significance of the shamrock is a way to represent the Christian Holy Trinity. It's said that St Patrick used a shamrock to represent the Holy Trinity when he came to bring Christianity to Ireland.
 
 The most prestigious college in Ireland is Trinity college.
 

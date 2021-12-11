@@ -43,7 +43,7 @@ Note: These displays are difficult to video correctly, they look much better in 
 
 Each ESP32 Trinity comes assembled with the following additional components:
 
-- An LDR - The reason its not assembled is you may want to place it on the top of your panel
+- An LDR - The reason it's not assembled is you may want to place it on the top of your panel
 - 8p Female header for the Breakout area
 - 16p (2x8) Stacking header (to be used if the Trinity does not fit with your matrix panel)
 
@@ -72,7 +72,7 @@ Please checkout [the ESP32 Trinity Github page](https://github.com/witnessmenow/
 
 ### Coding Support
 
-Please note that I can not provide coding support for this item. I can offer some troubleshooting advice on getting them working (but please also read the section labeled "will this work with my display") and I can point you to some examples I have created using these board, but I will not be able to give support on building something specific.
+Please note that I can not provide coding support for this item. I can offer some troubleshooting advice on getting them working (but please also read the section labeled "will this work with my display") and I can point you to some examples I have created using this board, but I will not be able to give support on building something specific.
 
 ### Change-log of versions
 

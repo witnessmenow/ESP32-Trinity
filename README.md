@@ -12,7 +12,10 @@ My main contribution to the open source community to date has been my Arduino li
 
 ## Where To Buy?
 
-- [My Tindie Store](https://www.tindie.com/products/brianlough/esp32-trinity/) (Ships from EU)
+My Tindie store is closed indefinitely (for more information you can check out [this video](https://www.youtube.com/watch?v=SZ2qgSj0Ets)). I will more than likely open it for a short run of trinitys some time in the futue, but I do not have any more details right now.
+
+The Trinity is still available through these resellers (FYI, this current batch is probably all that there will be as there is no plans to restock them):
+
 - [Makerfabs](https://www.makerfabs.com/esp32-trinity.html) (Ships from China) - Available here at a reduced price. Makerfabs also sell the panels that have been tested with the Trinity.
 - [Unexpected Maker](https://unexpectedmaker.com/shop/esp32-trinity) (Ships from Australia)
 - [Colin Hickey](https://store.eplop.co.uk/product/esp32_trinity/) (Ships from UK)

@@ -72,9 +72,9 @@ char password[] = "password"; // your network key
 // -------   Matrix Config   ------
 // -------------------------------------
 
-#define PANEL_RES_X 64      // Number of pixels wide of each INDIVIDUAL panel module. 
-#define PANEL_RES_Y 32     // Number of pixels tall of each INDIVIDUAL panel module.
-#define PANEL_CHAIN 1      // Total number of panels chained one to another
+const int panelResX = 64;   // Number of pixels wide of each INDIVIDUAL panel module.
+const int panelResY = 32;   // Number of pixels tall of each INDIVIDUAL panel module.
+const int panel_chain = 1;  // Total number of panels chained one to another.
 
 // -------------------------------------
 // -------   Clock Config   ------
@@ -115,6 +115,7 @@ bool displayIntro = true;
 String lastDisplayedTime = "";
 String lastDisplayedAmPm = "";
 
+const int y_offset = panelResY / 2;
 
 // This method is for controlling the tetris library draw calls
 void animationHandler()
@@ -124,7 +125,7 @@ void animationHandler()
   if (!finishedAnimating) {
     dma_display->fillScreen(myBLACK);
     if (displayIntro) {
-      finishedAnimating = tetris.drawText(1, 21);
+      finishedAnimating = tetris.drawText(1, 5 + y_offset);
     } else {
       if (twelveHourFormat) {
         // Place holders for checking are any of the tetris objects
@@ -133,18 +134,18 @@ void animationHandler()
         bool tetris2Done = false;
         bool tetris3Done = false;
 
-        tetris1Done = tetris.drawNumbers(-6, 26, showColon);
-        tetris2Done = tetris2.drawText(56, 25);
+        tetris1Done = tetris.drawNumbers(-6, 10 + y_offset, showColon);
+        tetris2Done = tetris2.drawText(56, 9 + y_offset);
 
         // Only draw the top letter once the bottom letter is finished.
         if (tetris2Done) {
-          tetris3Done = tetris3.drawText(56, 15);
+          tetris3Done = tetris3.drawText(56, -1 + y_offset);
         }
 
         finishedAnimating = tetris1Done && tetris2Done && tetris3Done;
 
       } else {
-        finishedAnimating = tetris.drawNumbers(2, 26, showColon);
+        finishedAnimating = tetris.drawNumbers(2, 10 + y_offset, showColon);
       }
     }
     dma_display->flipDMABuffer();
@@ -188,9 +189,9 @@ void setup() {
   Serial.begin(115200);
 
   HUB75_I2S_CFG mxconfig(
-    PANEL_RES_X,   // module width
-    PANEL_RES_Y,   // module height
-    PANEL_CHAIN    // Chain length
+    panelResX,   // Module width
+    panelResY,   // Module height
+    panel_chain  // Chain length
   );
 
   mxconfig.double_buff = true;
@@ -232,7 +233,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 
   // "connecting"
-  drawConnecting(5, 10);
+  drawConnecting(5, -6 + y_offset);
 
   // Setup EZ Time
   setDebug(INFO);
@@ -246,11 +247,11 @@ void setup() {
   Serial.println(myTZ.dateTime());
 
   // "Powered By"
-  drawIntro(6, 12);
+  drawIntro(6, -4 + y_offset);
   delay(2000);
 
   // Start the Animation Timer
-  tetris.setText("I2S SHIELD");
+  tetris.setText("TRINITY");
 
   // Wait for the animation to finish
   while (!finishedAnimating)
@@ -318,7 +319,7 @@ void handleColonAfterAnimation() {
   int x = twelveHourFormat ? -6 : 2;
   // The y position adjusted for where the blocks will fall from
   // (this could be better!)
-  int y = 26 - (TETRIS_Y_DROP_DEFAULT * tetris.scale);
+  int y = 10 + y_offset - (TETRIS_Y_DROP_DEFAULT * tetris.scale);
   tetris.drawColon(x, y, colour);
   dma_display->flipDMABuffer();
 }

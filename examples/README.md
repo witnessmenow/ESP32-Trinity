@@ -24,6 +24,8 @@ This section shows examples on how to do some things that could be useful to use
 - Images
   - [DisplayImageFromWeb](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Images/DisplayImageFromWeb) - Downloads a JPG from a URL (imgur in this case), save it to SPIFFS and displays it to the Matrix
   - [DisplayGIF](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Images/DisplayGIF) - Displays severtal GIFs on the matrix. Check the top of the file for more info.
+- Shapes
+  - [BouncingSquares](https://github.com/witnessmenow/ESP32-Trinity/tree/master/examples/BuildingBlocks/Shapes/BouncingSquares) - Displays squares of different colours and sizes which bounce off the sides.
 
 ### Trinity Features
 

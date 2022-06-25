@@ -34,6 +34,8 @@ You can re-enter the config mode by pressing the reset button twice (about 1 sec
 
 An awesome clock by Jonathas Barbosa that is a clock in the style of Mario for the NES where Mario hitting blocks is what progresses the time. It also fetches it's time from the internet.
 
+![Animated image showing Mario Clock project](https://thumbs.gfycat.com/EcstaticDeadKinglet-size_restricted.gif)
+
 #### Required hardware
 
 It is designed to run on a 64x4 matrix, no other hardware is needed.

@@ -18,13 +18,35 @@ My Wifi Tetris Clock project is a clock that gets it's time from the internet an
 
 #### Required hardware
 
-It is originally designed to run on a 64x32 matrix, but can be configured to run on a 64x64 in the config interface
+It is originally designed to run on a 64x32 matrix, but can be configured to run on a 64x64 in the config interface. No other hardware is needed.
 
+#### Web Flash Link
+
+[Web Flash Link](https://witnessmenow.github.io/ESP32-Trintiy-Web-Flash/WifiTetrisClock/)
 
 #### After flashing
 
 Once flashed, you will need to connect to the access point it hosts (details on the web flash page) and configure it. You will need to set the WiFi details of your network and you'll probably want to set your timezone too.
 
-You can r-enter the config mode by pressing the reset button twice (about 1 second apart)
+You can re-enter the config mode by pressing the reset button twice (about 1 second apart)
 
-[Web Flash Link](https://witnessmenow.github.io/ESP32-Trintiy-Web-Flash/WifiTetrisClock/)
+## Mario Clock (Clockwise) by [Jnthas](https://github.com/jnthas)
+
+An awesome clock by Jonathas Barbosa that is a clock in the style of Mario for the NES where Mario hitting blocks is what progresses the time. It also fetches it's time from the internet.
+
+#### Required hardware
+
+It is designed to run on a 64x4 matrix, no other hardware is needed.
+
+#### Project Code
+
+You can find the code for the project [here](https://github.com/jnthas/mariobros-clock)
+
+
+#### Web Flash Link
+
+[Web Flash Link](https://jnthas.github.io/mariobros-clock/)
+
+#### After flashing
+
+Once flashed, you will need to connect to the access point it hosts (details on the web flash page) and configure it. You will need to set the WiFi details of your network and you'll probably want to set your timezone too.

@@ -38,7 +38,7 @@ An awesome clock by Jonathas Barbosa that is a clock in the style of Mario for t
 
 #### Required hardware
 
-It is designed to run on a 64x4 matrix, no other hardware is needed.
+It is designed to run on a 64x64 matrix, no other hardware is needed.
 
 #### Project Code
 

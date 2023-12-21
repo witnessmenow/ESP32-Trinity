@@ -30,7 +30,6 @@
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 
-#define FS_NO_GLOBALS
 #include <FS.h>
 #include "SPIFFS.h"
 
@@ -101,12 +100,15 @@ WiFiClientSecure client;
 // This next function will be called during decoding of the jpeg file to
 // render each block to the Matrix.  If you use a different display
 // you will need to adapt this function to suit.
-void JPEGDraw(JPEGDRAW *pDraw)
+int JPEGDraw(JPEGDRAW *pDraw)
 {
   // Stop further decoding as image is running off bottom of screen
-  if (  pDraw->y >= dma_display->height() ) return;
+  if (  pDraw->y >= dma_display->height() ) return 0;
 
   dma_display->drawRGBBitmap(pDraw->x, pDraw->y, pDraw->pPixels, pDraw->iWidth, pDraw->iHeight);
+
+  // Return 1 to decode next block
+  return 1;
 }
 
 void displaySetup() {
